@@ -115,9 +115,28 @@ VALUES
 ('2', 'Marcus', 'Ankney', '30', 'G', 'SO', '75', '185')
 ('2', 'Cliff', 'Gashumba', '33', 'F', 'SO', '78', '200')
 ('2', 'Caedmon', 'Bontrager', '35', 'F', 'SO', '79', '235')
-
-
-
+('3', 'Payton', 'Baird', '0', 'G', 'FR', '77', '235')
+('3', 'Jameir', 'Jefferson', '1', 'G', 'SO', '74', '235')
+('3', 'Colin', 'Comer', '3', 'G', 'RS', '76', '235')
+('3', 'Beau', 'Jacquay', '4', 'C', 'SO', '80', '235')
+('3', 'Austin', 'Cripe', '5', 'G', 'RS', '75', '235')
+('3', 'Andrew', 'Hedrick', '10', 'G', 'SO', '72', '235')
+('3', 'Alex', 'Johnson', '13', 'G', 'FR', '76', '235')
+('3', 'James', 'Anserson', '14', 'C', 'GR', '80', '235')
+('3', 'Trent', 'Edwards', '21', 'G', 'GR', '76', '235')
+('3', 'Alonas', 'Peciulis', '22', 'F', 'JR', '78', '235')
+('3', 'Preston', 'Phillips', '23', 'F', 'GR', '80', '235')
+('3', 'Luke', 'McBride', '24', 'G', 'SO', '73', '235')
+('3', 'Ike', 'Umeh', '25', 'C', 'GR', '78', '235')
+('3', 'Alex', 'Ellenson', '32', 'F', 'RS', '80', '235')
+('4', 'Keshawn', 'McNeill', '0', 'G', 'SO', '74', '235')
+('4', 'Branden', 'Northern', '2', 'G', 'JR', '72', '235')
+('4', 'Joe', 'Reidy', '3', 'F', 'JR', '79', '235')
+('4', 'Zane', 'Burke', '4', 'G', 'SR', '76', '235')
+('4', 'Robert', 'Fry II', '5', 'G', 'SR', '73', '235')
+('4', 'Luke', 'Almodovar', '10', 'G', 'SO', '74', '235')
+('4', 'Matthew', 'Roettger', '11', 'G', 'FR', '74', '235')
+('4', 'Eugene', 'Young Jr.', '13', 'G', 'FR', '77', '235')
 
 
 
