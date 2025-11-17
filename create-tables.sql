@@ -100,6 +100,21 @@ VALUES
 ('1', 'Landen', 'Jordan', '23', 'F', 'SR', '81', '210')
 ('1', 'Jackson', 'Paul', '24', 'G', SR', '73', '175')
 ('1', 'Luke', 'LaGrange', '41', 'F', 'JR', '77', '195')
+('2', 'DJ', 'Moore', '0', 'F', 'JR', '80', '190')
+('2', 'Bright', 'Kari', '1', 'G', 'JR', '83', '210')
+('2', 'Kyle', 'Sanders', '2', 'G', 'SR', '73', '190')
+('2', 'Rocco', 'Muratori', '8', 'C', 'SO', '87', '255')
+('2', 'Jaxson', 'Gould', '10', 'G', 'SO', '73', '190')
+('2', 'Matthew', 'Brown', '11', 'F', 'SO', '78', '215')
+('2', 'Peyton', 'Byrd', '13', 'F', 'FR', '73', '190')
+('2', 'Connor', 'Hussong', '14', 'G', 'SO', '75', '150')
+('2', 'Issac', 'Andrews', '20', 'G', 'FR', '73', '185')
+('2', 'Griffin', 'Kliewer', '21', 'G', 'SR', '75', '190')
+('2', 'Jake', 'Smith', '23', 'F', 'FR', '78', '215')
+('2', 'Luke', 'Brown', '25', 'G', 'JR', '73', '175')
+('2', 'Marcus', 'Ankney', '30', 'G', 'SO', '75', '185')
+('2', 'Cliff', 'Gashumba', '33', 'F', 'SO', '78', '200')
+('2', 'Caedmon', 'Bontrager', '35', 'F', 'SO', '79', '235')
 
 
 
