@@ -188,9 +188,11 @@ VALUES
 (7, 'Grant', 'Burkholder', 5, 'G', 'SO', 69, NULL),
 (7, 'Caleb', 'Schall', 10, 'G', 'SR', 70, NULL),
 (7, 'Trent', 'Koning', 11, 'G', 'JR', 73, NULL),
-(7, 'Mason', 'Harvey', 0, 'F', 'FR', 80, NULL),
-
-
+(7, 'Mason', 'Harvey', 20, 'F', 'FR', 80, NULL),
+(7, 'Junior', 'Kambomba', 23, 'G', 'FR', 75, NULL),
+(7, 'Bailey', 'Conrad', 32, 'F', 'GR', 79, NULL),
+(7, 'Carter', 'Jones', 34, 'F/G', 'SR', 77, NULL),
+(7, 'Devin', 'Dreier', 40, 'F', 'SO', 79, NULL),
 
 (8, 'Fletcher', 'Manhart', 0, 'G', 'SR', 71, 190),
 (8, 'David', 'Cundiff', 1, 'G', 'FR', 72, 170),
@@ -206,9 +208,21 @@ VALUES
 (8, 'Jayden', 'Nimako', 22, 'F', 'FR', 78, 200),
 (8, 'Kevyn', 'Robertson', 23, 'F', 'SR', 78, 205),
 (8, 'Dante', 'Favor', 24, 'F', 'SO', 80, 215),
-(8, 'Gabe', 'Newhof', 25, 'F', 'JR', 81, 225);
+(8, 'Gabe', 'Newhof', 25, 'F', 'JR', 81, 225),
 
-
+(9, 'Chaz', 'Harvey', 0, 'G', 'JR', 73, 185),
+(9, 'Anton', 'Webb', 1, 'F', 'SR', 80, 210),
+(9, 'Jackson', 'Ullom', 2, 'G', 'JR', 70, 180),
+(9, 'Nate', 'Paarlberg', 3, 'F', 'JR', 78, 190),
+(9, 'Kobe', 'Funderburk', 4, 'G', 'SR', 72, 170),
+(9, 'Joey', 'Heaston', 10, 'G', 'FR', 74, 175),
+(9, 'Ben', 'Michel', 12, 'F', 'JR', 78, 205),
+(9, 'Levin', 'Smith', 13, 'C', 'FR', 83, 210),
+(9, 'John', 'McLimore', 14, 'G', 'JR', 75, 195),
+(9, 'Kaden', 'Fuhrmann', 15, 'G', 'SR', 76, 190),
+(9, 'Carson', 'Miller', 20, 'G', 'JR', 74, 205),
+(9, 'Noah', 'Choi', 21, 'G', 'SO', 73, 185),
+(9, 'Izaiah', 'Day', 23, 'G', 'SO', 75, 175),
 
 
 
