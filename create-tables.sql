@@ -188,6 +188,8 @@ VALUES
 (7, 'Grant', 'Burkholder', 5, 'G', 'SO', 69, NULL),
 (7, 'Caleb', 'Schall', 10, 'G', 'SR', 70, NULL),
 (7, 'Trent', 'Koning', 11, 'G', 'JR', 73, NULL),
+(7, 'Mason', 'Harvey', 0, 'F', 'FR', 80, NULL),
+
 
 
 (8, 'Fletcher', 'Manhart', 0, 'G', 'SR', 71, 190),
