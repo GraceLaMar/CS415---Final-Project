@@ -240,7 +240,7 @@ VALUES
 (10, 'Tillman', 'Etchison', 21, 'G', 'FR', 70, 165),
 (10, 'Dominic', 'Bonner', 24, 'G', 'FR', 75, 195),
 (10, 'Hayden', 'Nahra', 25, 'G', 'RS', 78, 205),
-(10, 'Aidan', 'Franks', 34, 'G', 'RS', 75, 175),
+(10, 'Aidan', 'Franks', 34, 'G', 'RS', 75, 175);
 
 
 
