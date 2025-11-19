@@ -191,7 +191,7 @@ VALUES
 (7, 'Mason', 'Harvey', 20, 'F', 'FR', 80, NULL),
 (7, 'Junior', 'Kambomba', 23, 'G', 'FR', 75, NULL),
 (7, 'Bailey', 'Conrad', 32, 'F', 'GR', 79, NULL),
-(7, 'Carter', 'Jones', 34, 'F/G', 'SR', 77, NULL),
+(7, 'Carter', 'Jones', 34, 'G/F', 'SR', 77, NULL),
 (7, 'Devin', 'Dreier', 40, 'F', 'SO', 79, NULL),
 
 (8, 'Fletcher', 'Manhart', 0, 'G', 'SR', 71, 190),
