@@ -223,6 +223,26 @@ VALUES
 (9, 'Carson', 'Miller', 20, 'G', 'JR', 74, 205),
 (9, 'Noah', 'Choi', 21, 'G', 'SO', 73, 185),
 (9, 'Izaiah', 'Day', 23, 'G', 'SO', 75, 175),
+(9, 'Kaleb', 'Edwards', 24, 'G', 'JR', 75, 175),
+(9, 'Caleb', 'Hodgson', 34, 'C', 'SR', 82, 220),
+(9, 'Julian', 'Mitchell', 35, 'G', 'SO', 75, 160),
+(9, 'Pete', 'Combs', 40, 'F', 'SO', 80, 220),
+
+(10, 'Gus', 'Etchison', 0, 'G', 'SR', 70, 150),
+(10, 'Josiah', 'Gustin', 2, 'F', 'FR', 80, 210),
+(10, 'Dylan', 'Moles', 3, 'G', 'SO', 75, 190),
+(10, 'Gavin', 'Foe', 4, 'G/F', 'RS', 76, 205),
+(10, 'Noah', 'Lovan', 11, 'G', 'FR', 75, 185),
+(10, 'Reis', 'Butcher', 12, 'G', 'FR', 75, 190),
+(10, 'Elhadj', 'Diallo', 13, 'G/F', 'RS', 75, 190),
+(10, 'Jackson', 'Ames', 14, 'C', 'SR', 84, 250),
+(10, 'Luke', 'Carroll', 20, 'G/F', 'RS', 78, 220),
+(10, 'Tillman', 'Etchison', 21, 'G', 'FR', 70, 165),
+(10, 'Dominic', 'Bonner', 24, 'G', 'FR', 75, 195),
+(10, 'Hayden', 'Nahra', 25, 'G', 'RS', 78, 205),
+(10, 'Aidan', 'Franks', 34, 'G', 'RS', 75, 175),
+
+
 
 
 
