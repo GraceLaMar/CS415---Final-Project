@@ -92,7 +92,7 @@ VALUES
 ('University of Rio Grande', 'URG', 'Ryan Arrowood', 'Rio Grande', 'OH', 'River States Conference'),
 ('Georgetown College', 'GC', 'Ed Cooley', 'Georgetown', 'KY', 'Mid-South Conference'),
 ('University of Northwestern Ohio', 'UNOH', 'Richard Westerlund', 'Lima', 'OH', 'Wolverine-Hoosier Athletic Conference'),
-('Olivet Nazarene University', 'ONU', 'Nick Birkey', 'Bourbonnais', 'IL`', 'Chicagoland Collegiate Athletic Conference'),
+('Olivet Nazarene University', 'ONU', 'Nick Birkey', 'Bourbonnais', 'IL', 'Chicagoland Collegiate Athletic Conference'),
 ('Holy Cross College', 'HCC', 'Tyler Braidic', 'Notre Dame', 'IN', 'Chicagoland Collegiate Athletic Conference');
     
 INSERT INTO Players (team_id, first_name, last_name, jersey_number, position, class_year, height_inches, weight_lbs)
