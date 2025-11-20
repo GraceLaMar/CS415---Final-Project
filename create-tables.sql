@@ -244,9 +244,16 @@ VALUES
 
 
 
-
-
-
+madonna - USF, SAU, HU, goshen, IWU 
+indiana tech - USF, SAU, marian, IWU, 
+cornerstone - Grace, SAU, bethel, HU, IWU, 
+Michigan Dearborn - Grace, MVNU, marian, 
+Pikeville - Grace, USF,
+rio grande - bethel, MVNU, grace
+georgetown - bethel, USF
+holy cross - HU, bethel, taylor
+olivet naz - IWU, HU, 
+inv=iversity nothwestern ohio
 
 
 
