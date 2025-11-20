@@ -83,8 +83,18 @@ VALUES
 ('Mount Vernon Nazarene University', 'MVNU', 'Jared Ronai', 'Mount Vernon', 'OH', 'Crossroads League'),
 ('Spring Arbor University', 'SAU', 'Ryan Cottingham', 'Spring Arbor', 'MI', 'Crossroads League'),
 ('Taylor University', 'TU', 'Austin Peters', 'Upland', 'IN', 'Crossroads League'),
-('Marian University', 'MU', 'Pat Knight', 'Indianapolis', 'IN', 'Crossroads League');
-
+('Marian University', 'MU', 'Pat Knight', 'Indianapolis', 'IN', 'Crossroads League'),
+('Madonna University', 'MU', 'Noel Emenhiser', 'Livonia', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+('Indiana Institute of Technology', 'IT', 'Ted Albert', 'Fort Wayne', 'IN', 'Wolverine-Hoosier Athletic Conference'),
+('Cornerstone University', 'CU', 'Kim Elders', 'Grand Rapids', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+('University of Michigan-Dearborn', 'MU', 'Mo Bazzi', 'Dearborn', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+('University of Pikeville', 'UPIKE', 'Tigh Compton', 'Pikeville', 'KY', 'Appalachian Athletic Conference'),
+('University of Rio Grande', 'URG', 'Ryan Arrowood', 'Rio Grande', 'OH', 'River States Conference'),
+('Georgetown College', 'GC', 'Ed Cooley', 'Georgetown', 'KY', 'Mid-South Conference'),
+('University of Northwestern Ohio', 'UNOH', 'Richard Westerlund', 'Lima', 'OH', 'Wolverine-Hoosier Athletic Conference'),
+('Olivet Nazarene University', 'ONU', 'Nick Birkey', 'Bourbonnais', 'IL`', 'Chicagoland Collegiate Athletic Conference'),
+('Holy ', 'MU', 'Noel Emenhiser', 'Livonia', 'MI', 'Wolverine-Hoosier Athletic Conference')
+    
 INSERT INTO Players (team_id, first_name, last_name, jersey_number, position, class_year, height_inches, weight_lbs)
 VALUES
 (1, 'Kaden', 'Johnson', 1, 'F', 'JR', 83, 200),
