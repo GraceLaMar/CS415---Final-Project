@@ -24,10 +24,12 @@ CREATE TABLE Players (
 CREATE TABLE Games (
     game_id INT PRIMARY KEY AUTO_INCREMENT,
     game_date DATE NOT NULL,
-    opponent VARCHAR(100) NOT NULL,
-    location ENUM('Home', 'Away', 'Neutral') NOT NULL,
-    team_score INT NOT NULL,
-    opponent_score INT NOT NULL
+    home_team_id INT NOT NULL,
+    away_team_id INT NOT NULL,
+    home_score INT NOT NULL,
+    away_score INT NOT NULL,
+    FOREIGN KEY (home_team_id) REFERENCES Teams(team_id),
+    FOREIGN KEY (away_team_id) REFERENCES Teams(team_id)
 );
 
 CREATE TABLE PlayerStats (
