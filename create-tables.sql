@@ -151,7 +151,7 @@ VALUES
 (5, 'DJ', 'Bryant', 2, 'G', 'GR', 69, 170),
 (5, 'Judah', 'Simfukwe', 5, 'G', 'JR', 73, 180),
 (5, 'Baran', 'Aslan', 11, 'G', 'SO', 75, 185),
-(5, 'Richard', 'Wilson', 12, 'G', '5th', 75, 190),
+(5, 'Richard', 'Wilson', 12, 'G', 'GR', 75, 190),
 (5, 'Jacob', 'Carlson', 13, 'G', 'JR', 75, 180),
 (5, 'Braden', 'Allen', 14, 'F', 'SO', 74, 195),
 (5, 'Kevin', 'Cota', 15, 'F', 'SO', 78, 215),
@@ -181,7 +181,7 @@ VALUES
 (6, 'Cole', 'Hayworth', 32, 'F', 'FR', 78, 215),
 
 (7, 'Milton', 'Gage', 0, 'G', 'GR', 71, 170),
-(7, 'Bede', 'Lori', 1, 'G', 'RS', 75, 185,
+(7, 'Bede', 'Lori', 1, 'G', 'RS', 75, 185),
 (7, 'Peyton', 'Heiss', 2, 'G', 'FR', 76, 195),
 (7, 'Isaiah', 'Brown', 3, 'F', 'FR', 78, 215),
 (7, 'Drew', 'Koning', 4, 'G', 'RS', 75, 185),
