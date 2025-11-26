@@ -95,7 +95,110 @@ VALUES
 ('Georgetown College', 'GC', 'Ed Cooley', 'Georgetown', 'KY', 'Mid-South Conference'),
 ('University of Northwestern Ohio', 'UNOH', 'Richard Westerlund', 'Lima', 'OH', 'Wolverine-Hoosier Athletic Conference'),
 ('Olivet Nazarene University', 'ONU', 'Nick Birkey', 'Bourbonnais', 'IL', 'Chicagoland Collegiate Athletic Conference'),
-('Holy Cross College', 'HCC', 'Tyler Braidic', 'Notre Dame', 'IN', 'Chicagoland Collegiate Athletic Conference');
+('Holy Cross College', 'HCC', 'Tyler Braidic', 'Notre Dame', 'IN', 'Chicagoland Collegiate Athletic Conference'),    
+('East-West University', 'EWU', 'Tommie Posley', 'Chicago', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+('Indiana University Columbus', 'IUC', 'Eric Jackson', 'Columbus', 'IN', 'River States Conference'),
+('Milligan University', 'MU', 'Bill Robinson', 'Milligan', 'TN', 'Appalachian Athletic Conference'),
+('Lawrence Technological University', 'LTU', 'Josh Pickens', 'Southfield', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+('New College of Florida', 'NCF', 'Andrew Wingreen', 'Sarasota', 'FL', 'Sun Conference'),
+('Ave Maria University', 'AMU', 'Jamal Smith', 'Ave Maria', 'FL', 'Sun Conference'),
+('Lourdes University', 'LU', 'Dennis Hopson', 'Sylvania', 'OH', 'Wolverine-Hoosier Athletic Conference'),
+('Northwestern College', 'NWC', 'Kris Korver', 'Orange city', 'IA', 'Great Plains Athletic Conference');
+
+('MidAmerica Nazarene University', 'MNU', 'Adam Hepker', 'Olathe', 'KS', 'Heart of America Athletic Conference'),
+
+('Grand View University', 'GVU', 'Denis Schaefer', 'Des Moines', 'IA', 'Heart of America Athletic Conference'),
+
+('Trinity Christian College', 'TCC', 'David Osborn', 'Palos Heights', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+
+('Florida Memorial University', 'FMU', 'Joshua Mendoza', 'Miami Gardens', 'FL', 'Sun Conference'),
+
+('St. Thomas University', 'STU', 'Josh Tauer', 'Miami Gardens', 'FL', 'Sun Conference'),
+
+('Life University', 'LU', 'Kevin Easley', 'Marietta', 'GA', 'Southern States Athletic Conference'),
+
+('Governors State University', 'GSU', 'Tony Bates', 'University Park', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+
+('Indiana University South Bend', 'IUSB', 'Scott Cooper', 'South Bend', 'IN', 'Chicagoland Collegiate Athletic Conference'),
+
+('Cumberland University', 'CU', 'Eric Evans II', 'Lebanon', 'TN', 'Mid-South Conference'),
+
+('Peru State College', 'PSC', 'Roman Gentry', 'Peru', 'NE', 'Heart of America Athletic Conference'),
+
+('Morningside University', 'MU', 'Trent Miller', 'Sioux City', 'IA', 'Great Plains Athletic Conference'),
+
+('LSU Alexandria', 'LSUA', 'Dimario Jackson', 'Alexandria', 'LA', 'Red River Athletic Conference'),
+
+('Rochester Christian University', 'RCU', 'Klint Pleasant', 'Rochester Hills', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+
+('Cleary University', 'CU', 'Carl Thomas', 'Howell', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+
+('Lewis-Clark State College', 'LCSC', 'Austin Johnson', 'Lewiston', 'ID', 'Cascade Collegiate Conference'),
+
+('Concordia University', 'CU', 'Ricky Yahn', 'Ann Arbor', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+
+('Kuyper College', 'KC', 'Gary Bailey', 'Grand Rapids', 'MI', 'National Christian College Athletic Association'),
+
+('Defiance College', 'DC', 'Josh Gibson', 'Defiance', 'OH', 'Heartland Collegiate Athletic Conference'),
+
+('Midway University', 'MU', 'Akeem Scott', 'Midway', 'KY', 'River States Conference'),
+
+('Aquinas College', 'AQ', 'Ryan Bertoia', 'Grand Rapids', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+
+('University of St. Francis', 'USF-IL', 'Ryan Marks', 'Joliet', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+
+('Saint Xavier University', 'SXU', 'Robert Ford', 'Chicago', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+
+('Indiana University East', 'IUE', 'Mark Hester', 'Richmond', 'IN', 'River States Conference'),
+
+('Texas A&M University-San Antonio', 'TAMUSA', 'Chris Dial', 'San Antonio', 'TX', 'Red River Athletic Conference'),
+
+-- Nelson University (non-NAIA but adding as requested)
+('Nelson University', 'NEL', NULL, NULL, NULL, NULL),
+
+-- Carolina University (Bruins)
+('Carolina University', 'CU', 'Jacob Heck', 'Winston-Salem', 'NC', 'NCCAA'),
+
+('Saint Mary-of-the-Woods College', 'SMWC', 'Maverick Harris', 'Saint Mary of the Woods', 'IN', 'River States Conference'),
+
+('Arizona Christian University', 'ACU', 'Jeff Rutter', 'Glendale', 'AZ', 'Golden State Athletic Conference'),
+
+('Campbellsville University', 'CU', 'Brent Vernon', 'Campbellsville', 'KY', 'Mid-South Conference'),
+
+('Pacific Union College', 'PUC', 'Landon Banks', 'Angwin', 'CA', 'California Pacific Conference'),
+
+-- California State Maritime Academy (Cal Maritime)
+('Califorinia State Maritime Academy', 'CMA', NULL, 'Vallejo', 'CA', 'California Pacific Conference'),
+
+('Simpson University', 'SU', NULL, 'Redding', 'CA', 'California Pacific Conference'),
+
+('Grace Christian University', 'GCU', NULL, 'Grand Rapids', 'MI', 'NCCAA'),
+
+('Great Lakes Christian College', 'GLCC', NULL, 'Lansing', 'MI', 'NCCAA'),
+
+('Siena Heights University', 'SHU', NULL, 'Adrian', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+
+('Freed-Hardeman University', 'FHU', NULL, 'Henderson', 'TN', 'Mid-South Conference'),
+
+('La Sierra University', 'LSU', NULL, 'Riverside', 'CA', 'California Pacific Conference'),
+
+('Justice College', 'JC', NULL, 'Chandler', 'AZ', 'National Christian College Athletic Association'),
+
+('Adrian College', 'AC', NULL, 'Adrian', 'MI', 'Michigan Intercollegiate Athletic Association'),
+
+('Indiana University Kokomo', 'IUK', NULL, 'Kokomo', 'IN', 'River States Conference'),
+
+('Ohio Christian University', 'OCU', NULL, 'Circleville', 'OH', 'River States Conference'),
+
+-- Moody Bible Institute
+('Moody Bible Institute', 'MBI', NULL, 'Chicago', 'IL', 'NCCAA'),
+
+('Indiana University Southeast', 'IUSE', NULL, 'New Albany', 'IN', 'River States Conference'),
+
+('Judson University', 'JU', NULL, 'Elgin', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+
+('Roosevelt University', 'RU', NULL, 'Chicago', 'IL', 'Chicagoland Collegiate Athletic Conference');
+
     
 INSERT INTO Players (team_id, first_name, last_name, jersey_number, position, class_year, height_inches, weight_lbs)
 VALUES
@@ -256,10 +359,10 @@ VALUES
 
 INSERT INTO Games (game_date, home_team_id, away_team_id, home_score, away_score)
 VALUES
-('2024-10-26', 1, , 130, 72),
-('2024-11-01', 1, , 91, 67),
-('2024-11-02', 1, , 56, 50),
-('2024-11-06', , 1, 83, 87),
+('2024-10-26', 1, 31, 130, 72),
+('2024-11-01', 1, 32, 91, 67),
+('2024-11-02', 1, 33, 56, 50),
+('2024-11-06', 34, 1, 83, 87),
 ('2024-11-09', 1, 30, 87, 63),
 ('2024-11-13', 21, 1, 60, 31),
 ('2024-11-16', 1, 23, 82, 78),
@@ -267,30 +370,61 @@ VALUES
 ('2024-11-23', 1, 3, 90, 96),
 ('2024-12-04', 4, 1, 89, 65),
 ('2024-12-07', 1, 7, 82, 71),
-('2024-12-14', , 1, 77, 80),
-('2024-12-16', , 1, 69, 97),
-('2024-12-30', 1, , 79, 64),
-('2025-1-04', 10, 1, 78, 76),
-('2025-1-08', 1, 6, 66, 70),
-('2025-1-11', 8, 1, 64, 81),
-('2025-1-15', 1, 9, 82, 68),
-('2025-1-18', 5, 1, 60, 109),
-('2025-1-25', 2, 1, 83, 76),
-('2025-1-29', 3, 1, 82, 92),
-('2025-2-01', 1, 4, 91, 69),
-('2025-2-05', 7, 1, 57, 68),
-('2025-2-08', 1, 10, 83, 62),
-('2025-2-12', 6, 1, 82, 84),
-('2025-2-15', 1, 8, 58, 62),
-('2025-2-19', 9, 1, 84, 92),
-('2025-2-22', 1, 5, 91, 56),
-('2025-2-25', 1, 4, 95, 83),
-('2025-2-28', 3, 1, 65, 75),
-('2025-3-03', 6, 1, 80, 72),
-('2025-3-14', 1, , 77, 51),
-('2025-3-15', 1, , 66, 80),
+('2024-12-14', 35, 1, 77, 80),
+('2024-12-16', 36, 1, 69, 97),
+('2024-12-30', 1, 29, 79, 64),
+('2025-01-04', 10, 1, 78, 76),
+('2025-01-08', 1, 6, 66, 70),
+('2025-01-11', 8, 1, 64, 81),
+('2025-01-15', 1, 9, 82, 68),
+('2025-01-18', 5, 1, 60, 109),
+('2025-01-25', 2, 1, 83, 76),
+('2025-01-29', 3, 1, 82, 92),
+('2025-02-01', 1, 4, 91, 69),
+('2025-02-05', 7, 1, 57, 68),
+('2025-02-08', 1, 10, 83, 62),
+('2025-02-12', 6, 1, 82, 84),
+('2025-02-15', 1, 8, 58, 62),
+('2025-02-19', 9, 1, 84, 92),
+('2025-02-22', 1, 5, 91, 56),
+('2025-02-25', 1, 4, 95, 83),
+('2025-02-28', 3, 1, 65, 75),
+('2025-03-03', 6, 1, 80, 72),
+('2025-03-14', 1, 37, 77, 51),
+('2025-03-15', 1, 38, 66, 80);
 
+/* huntington */
 
+('2024-10-31', 2, 22, 82, 78),
+('2024-11-01', 2, 23, 78, 72),
+('2024-11-05', 2, 29, 108, 67),
+('2024-11-08', 2, 39, 78, 74),
+('2024-11-09', 2, 40, 79, 69),
+('2024-11-14', 2, 41, 118, 86),
+('2024-11-23', 6, 2, 83, 93),
+('2024-12-04', 3, 2, 89, 97),
+('2024-12-07', 2, 8, 89, 83),
+('2024-12-09', 2, 31, 111, 57),
+('2024-12-14', 42, 2, 54, 65),
+('2024-12-16', 43, 2, 62, 88),
+('2024-12-31', 2, 21, 113, 75),
+('2025-01-04', 4, 2, 80, 77),
+('2025-01-08', 9, 2, 79, 76),
+('2025-01-11', 2, 7, 84, 71),
+('2025-01-15', 2, 5, 85, 76),
+('2025-01-18', 10, 2, 78, 71),
+('2025-01-29', 6, 2, 89, 75),
+('2025-02-01', 2, 3, 94, 60),
+('2025-02-05', 8, 2, 84, 75),
+('2025-02-08', 2, 4, 95, 86),
+('2025-02-12', 2, 9, 76, 63),
+('2025-02-15', 2, 7, 98, 76),
+('2025-02-19', 5, 2, 85, 104),
+('2025-02-22', 2, 10, 88, 73),
+('2025-02-25', 8, 2, 95, 96),
+('2025-02-28', 6, 2, 89, 82),
+('2025-03-14', 2, 21, 96, 77),
+('2025-03-15', 2, 44, 74, 88);
     
 madonna - USF, SAU, HU, goshen, IWU 
 indiana tech - USF, SAU, marian, IWU, 
