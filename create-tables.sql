@@ -103,101 +103,53 @@ VALUES
 ('New College of Florida', 'NCF', 'Andrew Wingreen', 'Sarasota', 'FL', 'Sun Conference'),
 ('Ave Maria University', 'AMU', 'Jamal Smith', 'Ave Maria', 'FL', 'Sun Conference'),
 ('Lourdes University', 'LU', 'Dennis Hopson', 'Sylvania', 'OH', 'Wolverine-Hoosier Athletic Conference'),
-('Northwestern College', 'NWC', 'Kris Korver', 'Orange city', 'IA', 'Great Plains Athletic Conference');
+('Northwestern College', 'NWC', 'Kris Korver', 'Orange city', 'IA', 'Great Plains Athletic Conference'),
 
 ('MidAmerica Nazarene University', 'MNU', 'Adam Hepker', 'Olathe', 'KS', 'Heart of America Athletic Conference'),
-
 ('Grand View University', 'GVU', 'Denis Schaefer', 'Des Moines', 'IA', 'Heart of America Athletic Conference'),
-
 ('Trinity Christian College', 'TCC', 'David Osborn', 'Palos Heights', 'IL', 'Chicagoland Collegiate Athletic Conference'),
-
 ('Florida Memorial University', 'FMU', 'Joshua Mendoza', 'Miami Gardens', 'FL', 'Sun Conference'),
-
 ('St. Thomas University', 'STU', 'Josh Tauer', 'Miami Gardens', 'FL', 'Sun Conference'),
-
 ('Life University', 'LU', 'Kevin Easley', 'Marietta', 'GA', 'Southern States Athletic Conference'),
-
 ('Governors State University', 'GSU', 'Tony Bates', 'University Park', 'IL', 'Chicagoland Collegiate Athletic Conference'),
-
 ('Indiana University South Bend', 'IUSB', 'Scott Cooper', 'South Bend', 'IN', 'Chicagoland Collegiate Athletic Conference'),
-
 ('Cumberland University', 'CU', 'Eric Evans II', 'Lebanon', 'TN', 'Mid-South Conference'),
-
 ('Peru State College', 'PSC', 'Roman Gentry', 'Peru', 'NE', 'Heart of America Athletic Conference'),
-
 ('Morningside University', 'MU', 'Trent Miller', 'Sioux City', 'IA', 'Great Plains Athletic Conference'),
-
 ('LSU Alexandria', 'LSUA', 'Dimario Jackson', 'Alexandria', 'LA', 'Red River Athletic Conference'),
-
 ('Rochester Christian University', 'RCU', 'Klint Pleasant', 'Rochester Hills', 'MI', 'Wolverine-Hoosier Athletic Conference'),
-
 ('Cleary University', 'CU', 'Carl Thomas', 'Howell', 'MI', 'Wolverine-Hoosier Athletic Conference'),
-
 ('Lewis-Clark State College', 'LCSC', 'Austin Johnson', 'Lewiston', 'ID', 'Cascade Collegiate Conference'),
-
 ('Concordia University', 'CU', 'Ricky Yahn', 'Ann Arbor', 'MI', 'Wolverine-Hoosier Athletic Conference'),
-
 ('Kuyper College', 'KC', 'Gary Bailey', 'Grand Rapids', 'MI', 'National Christian College Athletic Association'),
-
 ('Defiance College', 'DC', 'Josh Gibson', 'Defiance', 'OH', 'Heartland Collegiate Athletic Conference'),
-
 ('Midway University', 'MU', 'Akeem Scott', 'Midway', 'KY', 'River States Conference'),
-
 ('Aquinas College', 'AQ', 'Ryan Bertoia', 'Grand Rapids', 'MI', 'Wolverine-Hoosier Athletic Conference'),
-
 ('University of St. Francis', 'USF-IL', 'Ryan Marks', 'Joliet', 'IL', 'Chicagoland Collegiate Athletic Conference'),
-
 ('Saint Xavier University', 'SXU', 'Robert Ford', 'Chicago', 'IL', 'Chicagoland Collegiate Athletic Conference'),
-
 ('Indiana University East', 'IUE', 'Mark Hester', 'Richmond', 'IN', 'River States Conference'),
-
 ('Texas A&M University-San Antonio', 'TAMUSA', 'Chris Dial', 'San Antonio', 'TX', 'Red River Athletic Conference'),
-
--- Nelson University (non-NAIA but adding as requested)
-('Nelson University', 'NEL', NULL, NULL, NULL, NULL),
-
--- Carolina University (Bruins)
+('Nelson University', 'NU', 'Delton Deal', 'Waxahachie', 'TX', 'Sooner Athletic Conference'),
 ('Carolina University', 'CU', 'Jacob Heck', 'Winston-Salem', 'NC', 'NCCAA'),
-
 ('Saint Mary-of-the-Woods College', 'SMWC', 'Maverick Harris', 'Saint Mary of the Woods', 'IN', 'River States Conference'),
-
 ('Arizona Christian University', 'ACU', 'Jeff Rutter', 'Glendale', 'AZ', 'Golden State Athletic Conference'),
-
 ('Campbellsville University', 'CU', 'Brent Vernon', 'Campbellsville', 'KY', 'Mid-South Conference'),
-
 ('Pacific Union College', 'PUC', 'Landon Banks', 'Angwin', 'CA', 'California Pacific Conference'),
-
--- California State Maritime Academy (Cal Maritime)
-('Califorinia State Maritime Academy', 'CMA', NULL, 'Vallejo', 'CA', 'California Pacific Conference'),
-
-('Simpson University', 'SU', NULL, 'Redding', 'CA', 'California Pacific Conference'),
-
-('Grace Christian University', 'GCU', NULL, 'Grand Rapids', 'MI', 'NCCAA'),
-
-('Great Lakes Christian College', 'GLCC', NULL, 'Lansing', 'MI', 'NCCAA'),
-
-('Siena Heights University', 'SHU', NULL, 'Adrian', 'MI', 'Wolverine-Hoosier Athletic Conference'),
-
-('Freed-Hardeman University', 'FHU', NULL, 'Henderson', 'TN', 'Mid-South Conference'),
-
-('La Sierra University', 'LSU', NULL, 'Riverside', 'CA', 'California Pacific Conference'),
-
-('Justice College', 'JC', NULL, 'Chandler', 'AZ', 'National Christian College Athletic Association'),
-
-('Adrian College', 'AC', NULL, 'Adrian', 'MI', 'Michigan Intercollegiate Athletic Association'),
-
-('Indiana University Kokomo', 'IUK', NULL, 'Kokomo', 'IN', 'River States Conference'),
-
-('Ohio Christian University', 'OCU', NULL, 'Circleville', 'OH', 'River States Conference'),
-
--- Moody Bible Institute
-('Moody Bible Institute', 'MBI', NULL, 'Chicago', 'IL', 'NCCAA'),
-
-('Indiana University Southeast', 'IUSE', NULL, 'New Albany', 'IN', 'River States Conference'),
-
-('Judson University', 'JU', NULL, 'Elgin', 'IL', 'Chicagoland Collegiate Athletic Conference'),
-
-('Roosevelt University', 'RU', NULL, 'Chicago', 'IL', 'Chicagoland Collegiate Athletic Conference');
+('Califorinia State Maritime Academy', 'CSMA', 'Colin Johnson', 'Vallejo', 'CA', 'California Pacific Conference'),
+('Simpson University', 'SU', 'David Cone', 'Redding', 'CA', 'California Pacific Conference'),
+('Grace Christian University', 'GCU', 'Ryan Krombeen', 'Grand Rapids', 'MI', 'NCCAA'),
+('Great Lakes Christian College', 'GLCC', 'Elijah Kess', 'Lansing', 'MI', 'NCCAA'),
+('Siena Heights University', 'SHU', 'Joe Pechota', 'Adrian', 'MI', 'Wolverine-Hoosier Athletic Conference'),
+('Freed-Hardeman University', 'FHU', 'Drew Stutts', 'Henderson', 'TN', 'Mid-South Conference'),
+('La Sierra University', 'LSU', 'Ethan Lowe', 'Riverside', 'CA', 'California Pacific Conference'),
+('Justice College', 'JC', 'BJ Letcher', 'Chandler', 'AZ', 'National Christian College Athletic Association'),
+('Adrian College', 'AC', 'Tim Kaiser', 'Adrian', 'MI', 'Michigan Intercollegiate Athletic Association'),
+('Indiana University Kokomo', 'IUK', 'Eric Echelbarger', 'Kokomo', 'IN', 'River States Conference'),
+('Ohio Christian University', 'OCU', 'Ron Miller', 'Circleville', 'OH', 'River States Conference'),
+('Moody Bible Institute', 'MBI', 'Michael Chapin', 'Chicago', 'IL', 'National Christian College Athletic Association'),
+('Indiana University Southeast', 'IUSE', 'Wiley Brown', 'New Albany', 'IN', 'River States Conference'),
+('Judson University', 'JU', 'Rick Williams', 'Elgin', 'IL', 'Chicagoland Collegiate Athletic Conference'),
+('Roosevelt University', 'RU', 'Dee Brown', 'Chicago', 'IL', 'Chicagoland Collegiate Athletic Conference');
 
     
 INSERT INTO Players (team_id, first_name, last_name, jersey_number, position, class_year, height_inches, weight_lbs)
