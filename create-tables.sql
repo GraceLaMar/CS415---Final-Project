@@ -104,7 +104,6 @@ VALUES
 ('Ave Maria University', 'AMU', 'Jamal Smith', 'Ave Maria', 'FL', 'Sun Conference'),
 ('Lourdes University', 'LU', 'Dennis Hopson', 'Sylvania', 'OH', 'Wolverine-Hoosier Athletic Conference'),
 ('Northwestern College', 'NWC', 'Kris Korver', 'Orange city', 'IA', 'Great Plains Athletic Conference'),
-
 ('MidAmerica Nazarene University', 'MNU', 'Adam Hepker', 'Olathe', 'KS', 'Heart of America Athletic Conference'),
 ('Grand View University', 'GVU', 'Denis Schaefer', 'Des Moines', 'IA', 'Heart of America Athletic Conference'),
 ('Trinity Christian College', 'TCC', 'David Osborn', 'Palos Heights', 'IL', 'Chicagoland Collegiate Athletic Conference'),
@@ -476,22 +475,89 @@ VALUES
 ('2025-12-13', 6, 61, 93, 82),
 ('2025-12-16', 62, 6, 61, 87),
 ('2025-12-17', 63, 6, 71, 95),
-('2025-02-01', 5, 7, 73, 101),
-('2025-02-06', 10, 5, 76, 68),
-('2025-02-08', 5, 6, 59, 82),
-('2025-02-13', 8, 5, 88, 68),
-('2025-02-15', 5, 9, 55, 80),
-    
-madonna - USF, SAU, HU, goshen, IWU 
-indiana tech - USF, SAU, marian, IWU, 
-cornerstone - Grace, SAU, bethel, HU, IWU, 
-Michigan Dearborn - Grace, MVNU, marian, 
-Pikeville - Grace, USF,
-rio grande - bethel, MVNU, grace
-georgetown - bethel, USF
-holy cross - HU, bethel, taylor
-olivet naz - IWU, HU, 
-inv=iversity nothwestern ohio
+('2025-01-18', 6, 7, 68, 66),
+('2025-01-25', 10, 6, 76, 83),
+('2025-02-01', 6, 8, 90, 76),
+('2025-02-05', 6, 9, 90, 84),
+('2025-02-22', 7, 6, 77, 84),
+('2025-02-25', 6, 7, 83, 64), 
+('2025-03-14', 6, 64, 121, 69),
+('2025-03-15', 6, 25, 75, 67),
+('2025-03-20', 6, 65, 86, 71),
+('2025-03-22', 6, 66, 71, 73),
+
+--Mount Vernon
+
+('2024-11-02', 7, 84, 83, 57),
+('2024-11-08', 7, 41, 101, 80),
+('2024-11-09', 7, 65, 80, 57),
+('2024-11-15', 24, 7, 79, 98),
+('2024-11-16', 7, 51, 69, 70),
+('2024-11-20', 8, 7, 65, 57),
+('2025-11-23', 9, 7, 87, 79),
+('2025-11-26', 7, 67, 85, 78),
+('2025-12-13', 68, 7, 81, 88),
+('2025-12-14', 69, 7, 67, 88),
+('2025-12-16', 70, 7, 79, 101),
+('2025-12-30', 7, 26, 85, 81),
+('2025-12-17', 63, 6, 71, 95),
+('2025-01-15', 7, 10, 66, 63),
+('2025-01-25', 7, 8, 62, 68),
+('2025-01-29', 6, 9, 76, 71),
+('2025-02-19', 10, 7, 69, 78),
+
+--Spring Arbor
+
+('2024-10-31', 8, 23, 74, 64),
+('2024-11-01', 8, 22, 66, 79),
+('2024-11-05', 8, 71, 94, 83),
+('2024-11-09', 72, 8, 57, 75),
+('2024-11-12', 34, 8, 67, 95),
+('2024-11-15', 54, 8, 56, 71),
+('2025-11-23', 10, 8, 74, 76),
+('2025-11-26', 55, 8, 67, 81),
+('2025-12-17', 8, 58, 83, 60),
+('2025-12-20', 21, 8, 87, 65),
+('2025-12-31', 73, 8, 59, 64),
+('2025-01-04', 8, 9, 64, 47),
+('2025-01-29', 8, 10, 71, 80),
+('2025-02-08', 9, 8, 83, 71),
+('2025-03-14', 23, 8, 81, 83),
+('2025-03-15', 74, 8, 71, 69),
+
+--Taylor
+
+('2024-10-25', 75, 9, 74, 84),
+('2024-10-26', 76, 9, 58, 89),
+('2024-10-30', 9, 77, 75, 69),
+('2024-11-02', 9, 73, 85, 65),
+('2024-11-08', 9, 78, 93, 80),
+('2024-11-27', 9, 79, 84, 62),
+('2025-12-04', 10, 9, 83, 91),
+('2025-12-06', 9, 80, 107, 59),
+('2025-12-11', 30, 9, 65, 64),
+('2025-12-17', 61, 9, 121, 115),
+('2025-12-30', 28, 9, 94, 92),
+('2025-02-01', 9, 10, 69, 59),
+
+--Marian
+
+('2024-11-04', 81, 10, 71, 81),
+('2024-11-10', 10, 59, 78, 71),
+('2024-11-12', 22, 10, 78, 87),
+('2024-11-15', 51, 10, 81, 80),
+('2024-11-16', 24, 10, 68, 93),
+('2024-12-02', 82, 10, 77, 85),
+('2025-12-14', 83, 10, 78, 63),
+('2025-12-19', 10, 32, 77, 83),
+('2025-12-21', 65, 10, 76, 74),
+('2025-12-27', 10, 31, 105, 54),
+
+INSERT INTO Teams (team_name, team_abbrev, head_coach, city, state, conference)
+VALUES
+INSERT INTO Teams (team_name, team_abbrev, head_coach, city, state, conference)
+VALUES ('Kenyon College', 'KEN', 'Dan Priest', 'Gambier', 'OH', 'North Coast Athletic Conference');    
+
 
 UPDATE Teams
 SET conference = 'National Christian College Athletic Association'
