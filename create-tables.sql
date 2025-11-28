@@ -74,6 +74,25 @@ CREATE TABLE TeamStats (
 );
 
 
+CREATE TABLE SeasonStats (
+    season_stat_id INT AUTO_INCREMENT PRIMARY KEY,
+    team_id INT NOT NULL,
+    season YEAR NOT NULL,
+    points_avg DECIMAL(5,2),
+    fg_pct DECIMAL(5,3),
+    three_pct DECIMAL(5,3),
+    ft_pct DECIMAL(5,3),
+    rebounds_avg DECIMAL(5,2),
+    assists_avg DECIMAL(5,2),
+    steals_avg DECIMAL(5,2),
+    blocks_avg DECIMAL(5,2),
+    turnovers_avg DECIMAL(5,2),
+    overall_record VARCHAR(10),
+    leauge_record VARCHAR(10),
+    FOREIGN KEY (team_id) REFERENCES Teams(team_id)
+);
+
+
 INSERT INTO Teams (team_name, team_abbrev, head_coach, city, state, conference)
 VALUES
 ('Huntington University', 'HU', 'Kory Alford', 'Huntington', 'IN', 'Crossroads League'),
@@ -553,6 +572,22 @@ VALUES
 ('2025-12-21', 65, 10, 76, 74),
 ('2025-12-27', 10, 31, 105, 54),
 
+
+
+INSERT INTO SeasonStats (team_id, season, points_avg, fg_pct, three_pct, ft_pct, rebounds_avg, assists_avg, steals_avg, blocks_avg, turnovers_avg, overall_record, leauge_record)
+VALUES
+(0, '2024-25', points, fg, threes, ft, reb, ass, stl, block, turn, '25-8', '12-6'),
+(1, '2024-25', 83.0, 49.1, 36.4, 68.6, 33.1, 14.2, 5.4, 2.8, 13.8, '25-8', '12-6'),
+(2, '2024-25', 87.4, 50.4, 39.7, 75.8, 29.5, 18.2, 6.3, 2.6, 10.9, '22-10', '10-8'),
+(3, '2024-25', 81.0, 47.9, 34.7, 65.8, 31.0, 15.2, 6.4, 3.5, 10.9, '24-9', '14-4'),     
+(4, '2024-25', 80.3, 49.7, 36.3, 72.4, 31.5, 12.8, 6.6, 2.7, 12.3, '18-13', '10-8'),
+(5, '2024-25', 74.0, 43.2, 33.0, 71.3, 39.6, 13.1, 8.1, 3.1, 13.0, '5-23', '0-18'),
+(6, '2024-25', 86.6, 52.8, 33.0, 72.9, 31.2, 19.3, 7.2, 2.9, 11.9, '29-6', '15-3'),
+(7, '2024-25', 77.9, 45.9, 36.6, 77.2, 34.2, 15.4, 5.6, 3.1, 11.2, '14-15', '6-12'),
+(8, '2024-25', 75.5, 48.5, 33.1, 74.0, 31.8, 14.5, 6.5, 2.9, 11.8, '20-11', '11-7'),
+(9, '2024-25', 80.1, 49.1, 38.3, 68.5, 33.4, 16.4, 7.7, 2.4, 13.9, '14-15', '7-11'),
+(10, '2024-25', 75.0, 45.1, 36.7, 78.6, 35.3, 13.5, 5.7, 2.7, 10.6, '11-17', '5-13'),
+    
 INSERT INTO Teams (team_name, team_abbrev, head_coach, city, state, conference)
 VALUES
 INSERT INTO Teams (team_name, team_abbrev, head_coach, city, state, conference)
