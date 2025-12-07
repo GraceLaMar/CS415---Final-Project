@@ -16,7 +16,9 @@ For example, last year, Huntington University's head coach was Kory Alford. Sinc
 Another design choice I made was to make a SeasonStats table instead of a TeamStats table. I originally did this and then shortly realized this would require a lot of data. If I were to do this for every team in my database I would have needed to enter over 2400 TeamStats in. 
 SeasonStats allows for you to get a glimpse into how the team did over the season. It may prevent you from getting the full picture but statistics are still an important measure of preformance for teams.
 
-`Teams`stores important informtion about each team that helps distingush it from oter teams. These fields that are stored are school name, abbreviation, location, 
+`Teams`stores important informtion about each team that helps distingush it from other teams. These fields that are stored are team name, abbreviation, city, state, conference, and head coach. This table is central to the database as it the main reference table for each of the other tables. Each table links back to the Teams table. 
+
+`Players` stores all information about each member of the team including first name, last name, 
 
 ## Database ER Model
 
