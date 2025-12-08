@@ -1184,6 +1184,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### Poster and Presentation
 
-[Poster PDF](<img width="960" height="720" alt="Slide1" src="https://github.com/user-attachments/assets/a57ee0f0-ceea-43c7-91e9-b7aec751664f" />)
+[Poster PDF](​Research Poster Template - CS 415 Project​)
 
 
