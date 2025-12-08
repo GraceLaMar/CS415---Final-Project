@@ -141,9 +141,9 @@ CREATE TABLE Games (
     away_team_id INT NOT NULL,
     home_score INT NOT NULL,
     away_score INT NOT NULL,
-    FOREIGN KEY (home_team_id) REFERENCES Teams(team_id),
-    FOREIGN KEY (away_team_id) REFERENCES Teams(team_id)
+    FOREIGN KEY (home_team_id) REFERENCES Teams(team_id)
 );
+
 
 -- ====================================================
 --SEASONSTATS TABLES
