@@ -1142,7 +1142,7 @@ MariaDB [lamar]> SELECT team_name
 ### Reports
 
 **Sample PowerBI Chart**
-
+[PowerBI Chart](https://app.powerbi.com/groups/ff2f36b3-ca59-49d5-8c0a-3d523111fc1a/datasets/a49ea510-e7a2-4896-87e3-638e72d82994?experience=power-bi) 
 
 ### Delete Tables
 
