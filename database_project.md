@@ -1124,3 +1124,8 @@ MariaDB [lamar]> SELECT team_name
 +-----------------------+
 1 row in set (0.001 sec)
 ```
+
+---
+
+### Reports
+
