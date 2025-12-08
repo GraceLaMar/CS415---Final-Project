@@ -740,7 +740,7 @@ SELECT
     points_avg * 30 AS estimated_points_per_30_games
 FROM SeasonStats;
 ```
-
+**Sample Output**
 ```code
 +---------+-------------------------------+
 | team_id | estimated_points_per_30_games |
@@ -952,7 +952,7 @@ SELECT game_id, game_date, home_team_id, away_team_id, home_score, away_score
 FROM Games
 WHERE game_id = 20;
 ```
-
+**Sample Output**
 ```code
 +---------+------------+--------------+--------------+------------+------------+
 | game_id | game_date  | home_team_id | away_team_id | home_score | away_score |
@@ -989,6 +989,7 @@ INNER JOIN SeasonStats S ON T.team_id = S.team_id;
 SELECT * FROM TeamSeasonSummary
 ORDER BY points_avg DESC;
 ```
+**Sample Output**
 ```code
 +----------------------------------+-------------------+---------+------------+--------------+-------------+
 | team_name                        | conference        | season  | points_avg | rebounds_avg | assists_avg |
@@ -1009,7 +1010,7 @@ ORDER BY points_avg DESC;
 
 ## Query 10 – Transaction with `ROLLBACK`
 
-This example
+This example shows a transaction were the team name for Huntington University is temporarily changed, the result is checked, and then the `ROLLBACK` command is used so the change does not stick. This type of query would be useful in testing if a column needs changed. 
 
 ```sql
 -- Query 10: Demonstrate a transaction with ROLLBACK
@@ -1040,7 +1041,9 @@ FROM Teams
 WHERE team_id = 1;
 ```
 
+**Sample Output**
 ```code
+MariaDB [lamar]> -- Query 10: Demonstrate a transaction with ROLLBACK
 MariaDB [lamar]> SELECT team_name
     -> FROM Teams
     -> WHERE team_id = 1;
