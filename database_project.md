@@ -2,6 +2,17 @@
 
 ## Database Summary Report
 
+This database is designed for NAIA men’s basketball coaches, administrators, or anyone who is really interested in the sport. The database allows analyst to track teams and how they progress over a season. It gives a detailed look into the teams, their players, the games they play each season, and a detailed look into their stats for the season. This provides a central system for organizing the database. 
+
+This is also a good database for Teams and head coaches because it allows them to take a deeper dive into the other team players. While it doesn’t have player stats, it does have height and weight information that is important to know. For example, Indiana Wesleyan has a player on their team that is 7’3’ and that would be an important thing to know when getting ready to match up with them. 
+
+From a user’s perspective, the database is designed to be straightforward and easy to use. All the titles are simple and easy to understand allowing you to be able to know what is going on. You can simply look up information though the`Teams` table and explore individual player information through the `Player` table. By using foreign keys, I was able to keep the data consistent instead of having to repeat the data.
+
+The `SeasonStats` table provides a user with an overview of a team’s performance over the course of a season. This doesn’t give information from individual games, but it is still able to capture a large amount of information that the user would find useful for comparing for head-to-head matchups. This is the main way I see a user using this database is through the comparison to get a better idea of which team they think will win. 
+
+
+
+
 ### Project Overview
 
 This database is designed to model NAIA college basketball teams and show how each team progresses over multiple games, seasons, and rosters. 
@@ -1173,6 +1184,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### Poster and Presentation
 
-[Poster PDF](Research Poster Template - CS415 Project.pdf)
+[Poster PDF](<img width="960" height="720" alt="Slide1" src="https://github.com/user-attachments/assets/a57ee0f0-ceea-43c7-91e9-b7aec751664f" />)
 
 
