@@ -169,7 +169,7 @@ CREATE TABLE SeasonStats (
 );
 
 ```
---
+---
 
 ### Insert Data
 
