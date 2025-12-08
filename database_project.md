@@ -911,19 +911,19 @@ This query
 -- Query 7: UPDATE a project’s status from Planned ('P') to Active ('A')
 
 -- Check current status
-SELECT pid, name, status
-FROM project
-WHERE pid = 2;
+SELECT conference
+FROM Teams
+WHERE team_id = 21;
 
 -- Perform the update
-UPDATE project
-SET status = 'A'
-WHERE pid = 2;
-
--- Verify the change
 UPDATE Teams
 SET conference = 'Crossroads League'
-WHERE conference = 'CRL';
+WHERE conference = 'Wolverine-Hoosier Athletic Conference';
+
+-- Verify the change
+SELECT conference
+FROM Teams
+WHERE team_id = 21;
 ```
 
 ```code
