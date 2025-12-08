@@ -91,4 +91,81 @@ erDiagram
 
 ```
 
+## Create Tables
 
+The following SQL creates the 'Teams`,`Players`,`Games`, and `SeasonStats` tables in the current database. 
+
+```sql
+-- ==========================================
+--TEAMS TABLE
+-- Stores information about basketball teams
+-- ==========================================
+
+CREATE TABLE Teams (
+    team_id INT PRIMARY KEY AUTO_INCREMENT,
+    team_name VARCHAR(50),
+    team_abbrev VARCHAR(10),
+    city VARCHAR(50),
+    state CHAR(2),
+    conference VARCHAR(50),
+    head_coach VARCHAR(50)
+);
+
+-- ==========================================
+--TEAMS PLAYERS
+-- Stores information about a teams roster
+-- ==========================================
+
+CREATE TABLE Players (
+    player_id INT PRIMARY KEY AUTO_INCREMENT,
+    team_id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    jersey_number INT,
+    position ENUM('G', 'F', 'C', 'G/F'),
+    class_year ENUM('FR', 'SO', 'JR', 'SR', 'GR', 'RS'),
+    height_inches INT,
+    weight_lbs INT, 
+    FOREIGN KEY (team_id) REFERENCES Teams(team_id)
+);
+
+-- ===========================================
+--GAMES TABLES
+-- Stores head to head matchups between teams
+-- ===========================================
+
+CREATE TABLE Games (
+    game_id INT PRIMARY KEY AUTO_INCREMENT,
+    game_date DATE NOT NULL,
+    home_team_id INT NOT NULL,
+    away_team_id INT NOT NULL,
+    home_score INT NOT NULL,
+    away_score INT NOT NULL,
+    FOREIGN KEY (home_team_id) REFERENCES Teams(team_id),
+    FOREIGN KEY (away_team_id) REFERENCES Teams(team_id)
+);
+
+-- ====================================================
+--SEASONSTATS TABLES
+-- Stores statistics about teams and their preformance
+-- ====================================================
+
+CREATE TABLE SeasonStats (
+    season_stat_id INT AUTO_INCREMENT PRIMARY KEY,
+    team_id INT NOT NULL,
+    season YEAR NOT NULL,
+    points_avg DECIMAL(5,2),
+    fg_pct DECIMAL(5,3),
+    three_pct DECIMAL(5,3),
+    ft_pct DECIMAL(5,3),
+    rebounds_avg DECIMAL(5,2),
+    assists_avg DECIMAL(5,2),
+    steals_avg DECIMAL(5,2),
+    blocks_avg DECIMAL(5,2),
+    turnovers_avg DECIMAL(5,2),
+    overall_record VARCHAR(10),
+    leauge_record VARCHAR(10),
+    FOREIGN KEY (team_id) REFERENCES Teams(team_id)
+);
+
+```
