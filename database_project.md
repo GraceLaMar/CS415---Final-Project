@@ -761,15 +761,53 @@ FROM SeasonStats;
 
 ## Query 3 – `SELECT` using a MariaDB function (non-aggregate)
 
-This query 
+This query find the efficency of a team for each game using their season stats and the `ROUND` command. This command is very useful because it tells you how efficent each team is with the ball and give you another meausre for ranking how good teams are. 
 
 ```sql
--- Query 3: Extract email host using MID and INSTR
+-- Query 3: Create `shot_efficieny_score` using ROUND
+SELECT 
+    t.team_name,
+    s.points_avg,
+    s.fg_pct,
+    s.three_pct,
+    s.ft_pct,
 
+    ROUND((s.points_avg * (s.fg_pct / 100)), 2) AS shot_efficiency_score
+
+FROM SeasonStats s
+JOIN Teams t ON s.team_id = t.team_id
+JOIN Games g ON g.home_team_id = t.team_id OR g.away_team_id = t.team_id
+
+ORDER BY shot_efficiency_score DESC;
 
 ```
-
+**Sample Output (first x20)**
 ```code
++----------------------------------+------------+--------+-----------+--------+-----------------------+
+| team_name                        | points_avg | fg_pct | three_pct | ft_pct | shot_efficiency_score |
++----------------------------------+------------+--------+-----------+--------+-----------------------+
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
+| Grace College                    |      86.60 | 52.800 |    33.000 | 72.900 |                 45.72 |
++----------------------------------+------------+--------+-----------+--------+-----------------------+
+360 rows in set (0.003 sec)
 ```
 
 ## Query 4 – Aggregation with `GROUP BY` and `HAVING`
@@ -788,7 +826,7 @@ GROUP BY position
 HAVING COUNT(*) >= 5
 ORDER BY avg_height_inches DESC;
 ```
-
+**Sample Output**
 ```code
 +----------+-------------+-------------------+----------+---------+
 | position | num_players | avg_height_inches | shortest | tallest |
@@ -861,7 +899,7 @@ ORDER BY s.fg_pct DESC, g.game_date ASC;
 362 rows in set (0.007 sec)
 ```
 
-## Query 6 – `LEFT JOIN` to include projects without donations
+## Query 6 – `LEFT JOIN` to include Teams with SeasonStats
 
 This query uses a `LEFT JOIN` to list all teams and their avergae points per game from SeasonStats including Teams who have no data entered in `points_avg` (which will show `NULL`). This query could be really useful when it comes to ranking a teams preformance with their average points. This is an easily compparable statistic across any level of basketball that can tell you how efficient a team is. 
 
@@ -903,7 +941,7 @@ LEFT JOIN SeasonStats S ON T.team_id = S.team_id;
 74 rows in set (0.002 sec)
 ```
 
-## Query 7 – `UPDATE` query (change project status)
+## Query 7 – `UPDATE` query (change conference)
 
 This `UPDATE` changes Madonna's conference to Crossroads League instead of Wolverine-Hoosier Athletic Conference. This query helps to reflect the change in the entire database and can be helpful in keep consistent data since the tables are linked. The `SELECT` before and after helps verify the update worked.
 
@@ -930,7 +968,7 @@ WHERE team_id = 21;
 
 ```
 
-## Query 8 – `DELETE` query (remove a specific donation)
+## Query 8 – `DELETE` query (remove a specific game record)
 
 This query deletes a single game record. We first show the row we’re about to delete, run the `DELETE`, and then show that it has been removed.
 This command can be really helpful if a mistake was made to correct the mistake. 
