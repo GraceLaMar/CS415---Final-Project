@@ -153,7 +153,7 @@ CREATE TABLE Games (
 CREATE TABLE SeasonStats (
     season_stat_id INT AUTO_INCREMENT PRIMARY KEY,
     team_id INT NOT NULL,
-    season YEAR NOT NULL,
+    season VARCHAR(10) NOT NULL,
     points_avg DECIMAL(5,2),
     fg_pct DECIMAL(5,3),
     three_pct DECIMAL(5,3),
@@ -666,9 +666,8 @@ VALUES
 --------------------------------------------------------
 -- SEASONSTATS SAMPLE DATA (10 rows)
 --------------------------------------------------------
-INSERT INTO SeasonStats (team_id, season, points_avg, fg_pct, three_pct, ft_pct, rebounds_avg, assists_avg, steals_avg, blocks_avg, turnovers_avg, overall_record, leauge_record)
+INSERT INTO SeasonStats (team_id, season, points_avg, fg_pct, three_pct, ft_pct, rebounds_avg, assists_avg, steals_avg, blocks_avg, turnovers_avg, overall_record, league_record)
 VALUES
-(0, '2024-25', points, fg, threes, ft, reb, ass, stl, block, turn, '25-8', '12-6'),
 (1, '2024-25', 83.0, 49.1, 36.4, 68.6, 33.1, 14.2, 5.4, 2.8, 13.8, '25-8', '12-6'),
 (2, '2024-25', 87.4, 50.4, 39.7, 75.8, 29.5, 18.2, 6.3, 2.6, 10.9, '22-10', '10-8'),
 (3, '2024-25', 81.0, 47.9, 34.7, 65.8, 31.0, 15.2, 6.4, 3.5, 10.9, '24-9', '14-4'),     
@@ -679,4 +678,182 @@ VALUES
 (8, '2024-25', 75.5, 48.5, 33.1, 74.0, 31.8, 14.5, 6.5, 2.9, 11.8, '20-11', '11-7'),
 (9, '2024-25', 80.1, 49.1, 38.3, 68.5, 33.4, 16.4, 7.7, 2.4, 13.9, '14-15', '7-11'),
 (10, '2024-25', 75.0, 45.1, 36.7, 78.6, 35.3, 13.5, 5.7, 2.7, 10.6, '11-17', '5-13');
+```
+
+### Queries
+
+Required Queries using `Teams`, `Players`, `Games`, and `SeasonStats` tables.
+
+---
+
+## Query 1 – `SELECT` with `ORDER BY` on two columns
+
+This query 
+
+```sql
+-- Query 1: List members ordered by city, then last name
+SELECT team_id,
+first_name,
+last_name,
+height_inches
+FROM Players
+ORDER BY height_inches ASC, team_id ASC, first_name ASC, last_name ASC;
+```
+
+**Sample Output**
+```code
++---------+------------+-------------+---------------+
+| team_id | first_name | last_name   | height_inches |
++---------+------------+-------------+---------------+
+|       5 | DJ         | Bryant      |            69 |
+|       7 | Grant      | Burkholder  |            69 |
+|       7 | Caleb      | Schall      |            70 |
+|       9 | Jackson    | Ullom       |            70 |
+|      10 | Gus        | Etchison    |            70 |
+|      10 | Tillman    | Etchison    |            70 |
+|       5 | Jacob      | Eyler       |            71 |
+|       5 | Kahmi      | Bracey      |            71 |
+|       7 | Milton     | Gage        |            71 |
+|       8 | Fletcher   | Manhart     |            71 |
+|       1 | Miles      | Good        |            72 |
+|       3 | Andrew     | Hedrick     |            72 |
+|       4 | Branden    | Northern    |            72 |
+|       5 | Marcus     | Northern    |            72 |
+|       6 | Carter     | Stoltzfus   |            72 |
+|       8 | David      | Cundiff     |            72 |
+|       9 | Kobe       | Funderburk  |            72 |
+|       1 | Jackson    | Paul        |            73 |
+|       1 | Maximus    | Gizzi       |            73 |
+|       2 | Issac      | Andrews     |            73 |
+|       2 | Jaxson     | Gould       |            73 |
+|       2 | Kyle       | Sanders     |            73 |
+|       2 | Luke       | Brown       |            73 |
+|       2 | Peyton     | Byrd        |            73 |
+|       3 | Luke       | McBride     |            73 |
+|       4 | Chase      | Newton      |            73 |
+|       4 | Robert     | Fry II      |            73 |
+|       5 | Judah      | Simfukwe    |            73 |
+|       6 | Alex       | Darnell     |            73 |
+|       6 | Marcus     | Davidson    |            73 |
+|       7 | Trent      | Koning      |            73 |
+|       8 | Trey       | Cottingham  |            73 |
+|       8 | Warrick    | Elder       |            73 |
+|       9 | Chaz       | Harvey      |            73 |
+|       9 | Noah       | Choi        |            73 |
+|       1 | Drew       | Goodline    |            74 |
+|       1 | Taden      | Metzger     |            74 |
+|       3 | Jameir     | Jefferson   |            74 |
+|       4 | Keshawn    | McNeill     |            74 |
+|       4 | Luke       | Almodovar   |            74 |
+|       4 | Matthew    | Roettger    |            74 |
+|       4 | Sam        | Johnson     |            74 |
+|       5 | Braden     | Allen       |            74 |
+|       6 | Brett      | Sickafoose  |            74 |
+|       6 | Seth       | Martin      |            74 |
+|       9 | Carson     | Miller      |            74 |
+|       9 | Joey       | Heaston     |            74 |
+|       1 | Cade       | Brenner     |            75 |
+|       1 | Lane       | Sparks      |            75 |
+|       2 | Connor     | Hussong     |            75 |
+|       2 | Griffin    | Kliewer     |            75 |
+|       2 | Marcus     | Ankney      |            75 |
+|       3 | Austin     | Cripe       |            75 |
+|       5 | Baran      | Aslan       |            75 |
+|       5 | Jacob      | Carlson     |            75 |
+|       5 | Richard    | Wilson      |            75 |
+|       6 | Brycen     | Graber      |            75 |
+|       7 | Bede       | Lori        |            75 |
+|       7 | Drew       | Koning      |            75 |
+|       7 | Junior     | Kambomba    |            75 |
+|       8 | Eli        | White       |            75 |
+|       8 | Luke       | Stuckey     |            75 |
+|       8 | Shane      | Rykse       |            75 |
+|       8 | Travis     | Grayson     |            75 |
+|       8 | Tyler      | DeSimpelare |            75 |
+|       9 | Izaiah     | Day         |            75 |
+|       9 | John       | McLimore    |            75 |
+|       9 | Julian     | Mitchell    |            75 |
+|       9 | Kaleb      | Edwards     |            75 |
+|      10 | Aidan      | Franks      |            75 |
+|      10 | Dominic    | Bonner      |            75 |
+|      10 | Dylan      | Moles       |            75 |
+|      10 | Elhadj     | Diallo      |            75 |
+|      10 | Noah       | Lovan       |            75 |
+|      10 | Reis       | Butcher     |            75 |
+|       3 | Alex       | Johnson     |            76 |
+|       3 | Colin      | Comer       |            76 |
+|       3 | Trent      | Edwards     |            76 |
+|       4 | Braeden    | Messenger   |            76 |
+|       4 | Dorean     | Hacker      |            76 |
+|       4 | Zane       | Burke       |            76 |
+|       5 | Deecon     | Hill        |            76 |
+|       5 | Kenny      | May         |            76 |
+|       7 | Peyton     | Heiss       |            76 |
+|       9 | Kaden      | Fuhrmann    |            76 |
+|      10 | Gavin      | Foe         |            76 |
+|       1 | Khamani    | Smith       |            77 |
+|       1 | Landon     | Biegel      |            77 |
+|       1 | Luke       | LaGrange    |            77 |
+|       3 | Payton     | Baird       |            77 |
+|       4 | Eugene     | Young Jr.   |            77 |
+|       5 | JP         | Jabbour     |            77 |
+|       5 | Juraj      | Minarovjech |            77 |
+|       5 | Saiveon    | Williams    |            77 |
+|       6 | Caleb      | Herrold     |            77 |
+|       6 | Cannen     | Houser      |            77 |
+|       6 | Gage       | Sefton      |            77 |
+|       7 | Carter     | Jones       |            77 |
+|       2 | Cliff      | Gashumba    |            78 |
+|       2 | Jake       | Smith       |            78 |
+|       2 | Matthew    | Brown       |            78 |
+|       3 | Alonas     | Peciulis    |            78 |
+|       3 | Ike        | Umeh        |            78 |
+|       4 | Karson     | Rogers      |            78 |
+|       5 | Kevin      | Cota        |            78 |
+|       6 | Cole       | Hayworth    |            78 |
+|       6 | Ian        | Raasch      |            78 |
+|       7 | Isaiah     | Brown       |            78 |
+|       8 | Aden       | Zank        |            78 |
+|       8 | Jayden     | Nimako      |            78 |
+|       8 | Kevyn      | Robertson   |            78 |
+|       9 | Ben        | Michel      |            78 |
+|       9 | Nate       | Paarlberg   |            78 |
+|      10 | Hayden     | Nahra       |            78 |
+|      10 | Luke       | Carroll     |            78 |
+|       2 | Caedmon    | Bontrager   |            79 |
+|       4 | Joe        | Reidy       |            79 |
+|       6 | Hunter     | Walston     |            79 |
+|       6 | Ian        | Scott       |            79 |
+|       6 | Isaac      | Schultz     |            79 |
+|       6 | Justin     | DeGraaf     |            79 |
+|       7 | Bailey     | Conrad      |            79 |
+|       7 | Devin      | Dreier      |            79 |
+|       8 | Ty         | Rykse       |            79 |
+|       2 | DJ         | Moore       |            80 |
+|       3 | Alex       | Ellenson    |            80 |
+|       3 | Beau       | Jacquay     |            80 |
+|       3 | James      | Anserson    |            80 |
+|       3 | Preston    | Phillips    |            80 |
+|       4 | Isaiah     | Malone      |            80 |
+|       4 | Jackson    | Gowdy       |            80 |
+|       7 | Mason      | Harvey      |            80 |
+|       8 | Dante      | Favor       |            80 |
+|       9 | Anton      | Webb        |            80 |
+|       9 | Pete       | Combs       |            80 |
+|      10 | Josiah     | Gustin      |            80 |
+|       1 | Landen     | Jordan      |            81 |
+|       1 | Romain     | Bruwier     |            81 |
+|       8 | Gabe       | Newhof      |            81 |
+|       9 | Caleb      | Hodgson     |            82 |
+|       1 | Kaden      | Johnson     |            83 |
+|       2 | Bright     | Kari        |            83 |
+|       9 | Levin      | Smith       |            83 |
+|      10 | Jackson    | Ames        |            84 |
+|       2 | Rocco      | Muratori    |            87 |
++---------+------------+-------------+---------------+
+145 rows in set (0.001 sec)
+
+## Query 2 – `SELECT` with a calculated field (non-aggregate)
+
+This query
 ```
