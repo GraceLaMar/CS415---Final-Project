@@ -169,3 +169,8 @@ CREATE TABLE SeasonStats (
 );
 
 ```
+--
+
+### Insert Data
+
+The following SQL inserts sample data for the
