@@ -905,10 +905,10 @@ LEFT JOIN SeasonStats S ON T.team_id = S.team_id;
 
 ## Query 7 – `UPDATE` query (change project status)
 
-This query
+This `UPDATE` changes Madonna's conference to Crossroads League instead of Wolverine-Hoosier Athletic Conference. This query helps to reflect the change in the entire database and can be helpful in keep consistent data since the tables are linked. The `SELECT` before and after helps verify the update worked.
 
 ```sql
--- Query 7: UPDATE a project’s status from Planned ('P') to Active ('A')
+-- Query 7: UPDATE a Teams conference from Wolverine-Hoosier Athletic Conference to Crossroads League
 
 -- Check current status
 SELECT conference
@@ -932,12 +932,13 @@ WHERE team_id = 21;
 
 ## Query 8 – `DELETE` query (remove a specific donation)
 
-This query
+This query deletes a single game record. We first show the row we’re about to delete, run the `DELETE`, and then show that it has been removed.
+This command can be really helpful if a mistake was made to correct the mistake. 
 
 ```sql
--- Query 8: DELETE a single donation (e.g., did = 100)
+-- Query 8: DELETE a single game record
 
--- Show the donation we plan to delete
+-- Show the game we want information on
 SELECT game_id, game_date, home_team_id, away_team_id, home_score, away_score
 FROM Games
 WHERE game_id = 20;
@@ -967,7 +968,7 @@ Empty set (0.000 sec)
 
 ## Query 9 – Create a `VIEW` and use it
 
-This query
+This query creates a view called `TeamSeasonSummary` that joins Teams and SeasonStats with each team. This view is helpful for looking at some teams stats and comparing for a specific onference or some other way of sorting. 
 
 ```sql
 -- Query 9: Create a VIEW and then select from it
