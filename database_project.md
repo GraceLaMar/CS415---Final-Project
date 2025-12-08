@@ -1129,3 +1129,27 @@ MariaDB [lamar]> SELECT team_name
 
 ### Reports
 
+
+### Delete Tables
+
+Drop all tables (and view) from database.
+
+
+```sql
+-- ==========================================
+-- DROP ALL TABLES FOR BASKETBALL DATABASE
+-- (Games → Teams dependency; 
+-- SeasonStats → Teams dependency;
+-- Players → Teams dependency)
+-- ==========================================
+
+-- Drop the view first (if it exists)
+DROP VIEW IF EXISTS TeamSeasonSummary;
+
+-- Drop tables in FK-safe order
+DROP TABLE IF EXISTS Games;
+DROP TABLE IF EXISTS SeasonStats;
+DROP TABLE IF EXISTS Players;
+DROP TABLE IF EXISTS Teams;
+
+```
