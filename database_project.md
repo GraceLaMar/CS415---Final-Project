@@ -1184,6 +1184,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### Poster and Presentation
 
-[Poster PDF](​Research Poster Template - CS 415 Project​)
+[Poster PDF]([​Research Poster Template - CS 415 Project​](https://huntingtonedu-my.sharepoint.com/personal/yantissa_huntington_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fyantissa%5Fhuntington%5Fedu%2FDocuments%2FAttachments%2FResearch%20Poster%20Template%20%2D%20CS%20415%20Project%2Epdf&parent=%2Fpersonal%2Fyantissa%5Fhuntington%5Fedu%2FDocuments%2FAttachments&ga=1))
 
 
