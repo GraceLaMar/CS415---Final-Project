@@ -93,7 +93,7 @@ erDiagram
 
 ## Create Tables
 
-The following SQL creates the 'Teams`,`Players`,`Games`, and `SeasonStats` tables in the current database. 
+The following SQL creates the `Teams`,`Players`,`Games`, and `SeasonStats` tables in the current database. 
 
 ```sql
 -- ==========================================
