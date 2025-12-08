@@ -951,17 +951,17 @@ This `UPDATE` changes Madonna's conference to Crossroads League instead of Wolve
 -- Check current status
 SELECT conference
 FROM Teams
-WHERE team_id = 21;
+WHERE team_id = 11;
 
 -- Perform the update
 UPDATE Teams
 SET conference = 'Crossroads League'
-WHERE conference = 'Wolverine-Hoosier Athletic Conference';
+WHERE team_id = 11;
 
 -- Verify the change
 SELECT conference
 FROM Teams
-WHERE team_id = 21;
+WHERE team_id = 11;
 ```
 
 ```code
