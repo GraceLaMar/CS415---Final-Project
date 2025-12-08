@@ -946,7 +946,7 @@ LEFT JOIN SeasonStats S ON T.team_id = S.team_id;
 This `UPDATE` changes Madonna's conference to Crossroads League instead of Wolverine-Hoosier Athletic Conference. This query helps to reflect the change in the entire database and can be helpful in keep consistent data since the tables are linked. The `SELECT` before and after helps verify the update worked.
 
 ```sql
--- Query 7: UPDATE a Teams conference from Wolverine-Hoosier Athletic Conference to Crossroads League
+-- Query 7: UPDATE a Teams conference to Crossroads League
 
 -- Check current status
 SELECT conference
@@ -963,9 +963,21 @@ SELECT conference
 FROM Teams
 WHERE team_id = 11;
 ```
-
+**Sample Output**
 ```code
++---------------------------------------+
+| conference                            |
++---------------------------------------+
+| Wolverine-Hoosier Athletic Conference |
++---------------------------------------+
+1 row in set (0.001 sec)
 
++-------------------+
+| conference        |
++-------------------+
+| Crossroads League |
++-------------------+
+1 row in set (0.001 sec)
 ```
 
 ## Query 8 – `DELETE` query (remove a specific game record)
