@@ -122,8 +122,8 @@ CREATE TABLE Players (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     jersey_number INT,
-    position ENUM('G', 'F', 'C', 'G/F'),
-    class_year ENUM('FR', 'SO', 'JR', 'SR', 'GR', 'RS'),
+    position CHAR(10),
+    class_year CHAR(10),
     height_inches INT,
     weight_lbs INT, 
     FOREIGN KEY (team_id) REFERENCES Teams(team_id)
@@ -1143,13 +1143,15 @@ Drop all tables (and view) from database.
 -- Players → Teams dependency)
 -- ==========================================
 
--- Drop the view first (if it exists)
+SET FOREIGN_KEY_CHECKS = 0;
+
 DROP VIEW IF EXISTS TeamSeasonSummary;
 
--- Drop tables in FK-safe order
 DROP TABLE IF EXISTS Games;
-DROP TABLE IF EXISTS SeasonStats;
 DROP TABLE IF EXISTS Players;
+DROP TABLE IF EXISTS SeasonStats;
 DROP TABLE IF EXISTS Teams;
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 ```
