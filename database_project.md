@@ -852,8 +852,477 @@ ORDER BY height_inches ASC, team_id ASC, first_name ASC, last_name ASC;
 |       2 | Rocco      | Muratori    |            87 |
 +---------+------------+-------------+---------------+
 145 rows in set (0.001 sec)
-
+```
 ## Query 2 – `SELECT` with a calculated field (non-aggregate)
 
 This query
+
+```sql
+-- Query 2: Show project goals, including a calculated “thousands” column
+SELECT 
+    team_id,
+    points_avg * 30 AS estimated_points_per_30_games
+FROM SeasonStats;
+```
+
+```code
++---------+-------------------------------+
+| team_id | estimated_points_per_30_games |
++---------+-------------------------------+
+|       1 |                       2490.00 |
+|       2 |                       2622.00 |
+|       3 |                       2430.00 |
+|       4 |                       2409.00 |
+|       5 |                       2220.00 |
+|       6 |                       2598.00 |
+|       7 |                       2337.00 |
+|       8 |                       2265.00 |
+|       9 |                       2403.00 |
+|      10 |                       2250.00 |
++---------+-------------------------------+
+10 rows in set (0.002 sec)
+```
+
+## Query 3 – `SELECT` using a MariaDB function (non-aggregate)
+
+This query 
+
+```sql
+-- Query 3: Extract email host using MID and INSTR
+
+
+```
+
+```code
+```
+
+## Query 4 – Aggregation with `GROUP BY` and `HAVING`
+
+This query
+
+```sql
+-- Query 4: Total donations per project, only showing projects with >= $500
+SELECT 
+    position,
+    COUNT(*) AS num_players,
+    AVG(height_inches) AS avg_height_inches,
+    MIN(height_inches) AS shortest,
+    MAX(height_inches) AS tallest
+FROM Players
+GROUP BY position
+HAVING COUNT(*) >= 5
+ORDER BY avg_height_inches DESC;
+```
+
+```code
++----------+-------------+-------------------+----------+---------+
+| position | num_players | avg_height_inches | shortest | tallest |
++----------+-------------+-------------------+----------+---------+
+| C        |           8 |           81.3750 |       77 |      87 |
+| F        |          47 |           78.4894 |       73 |      83 |
+| G        |          86 |           74.0000 |       69 |      83 |
++----------+-------------+-------------------+----------+---------+
+3 rows in set (0.002 sec)
+```
+
+## Query 5 – Join of three tables (`member`, `donation`, `project`)
+
+This query
+
+```sql
+-- Query 5: Join member, donation, and project to show detailed donation history
+SELECT 
+    t.team_name,
+    s.fg_pct,
+    s.three_pct,
+    s.ft_pct,
+    g.game_date,
+    g.home_score,
+    g.away_score,
+    (
+        SELECT t2.team_name
+        FROM Teams t2
+        WHERE t2.team_id = 
+            CASE 
+                WHEN g.home_score > g.away_score THEN g.home_team_id
+                WHEN g.away_score > g.home_score THEN g.away_team_id
+                ELSE NULL
+            END
+    ) AS winning_team
+FROM Teams t
+INNER JOIN SeasonStats s 
+    ON t.team_id = s.team_id
+INNER JOIN Games g 
+    ON t.team_id IN (g.home_team_id, g.away_team_id)
+ORDER BY s.fg_pct DESC, g.game_date ASC;
+```
+
+```code
++----------------------------------+--------+-----------+--------+------------+------------+------------+-----------------------------------+
+| team_name                        | fg_pct | three_pct | ft_pct | game_date  | home_score | away_score | winning_team                      |
++----------------------------------+--------+-----------+--------+------------+------------+------------+-----------------------------------+
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-01 |         92 |         84 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-02 |         65 |         69 | University of Rio Grande          |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-05 |         87 |         78 | Cornerstone University            |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-08 |        100 |        103 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-12 |        117 |         57 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-15 |         80 |        102 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2024-11-23 |         83 |         93 | Indiana Wesleyan University       |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-04 |        111 |         67 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-08 |         66 |         70 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-08 |         66 |         70 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-11 |         74 |         75 | Bethel University                 |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-15 |         65 |         72 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-18 |         68 |         66 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-25 |         69 |         86 | Bethel University                 |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-25 |         76 |         83 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-29 |         76 |         71 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-01-29 |         89 |         75 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-01 |         90 |         76 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-05 |         90 |         84 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-08 |         59 |         82 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-12 |         82 |         84 | Huntington University             |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-12 |         82 |         84 | Huntington University             |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-15 |         55 |         72 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-19 |         84 |         80 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-22 |         77 |         84 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-25 |         83 |         64 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-02-28 |         89 |         82 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-03-03 |         80 |         72 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-03-03 |         80 |         72 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-03-14 |        121 |         69 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-03-15 |         75 |         67 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-03-20 |         86 |         71 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-03-22 |         71 |         73 | Arizona Christian University      |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-11-20 |         98 |         62 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-11-26 |        104 |         69 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-12-04 |         76 |         61 | Spring Arbor University           |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-12-07 |         76 |         88 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-12-13 |         93 |         82 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-12-16 |         61 |         87 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-12-17 |         71 |         95 | Grace College                     |
+| Grace College                    | 52.800 |    33.000 | 72.900 | 2025-12-17 |         71 |         95 | Grace College                     |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-10-31 |         82 |         78 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-01 |         78 |         72 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-05 |        108 |         67 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-08 |         78 |         74 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-09 |         79 |         69 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-14 |        118 |         86 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-20 |         97 |         88 | Huntington University             |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-20 |         97 |         88 | Huntington University             |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-11-23 |         83 |         93 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-12-04 |         89 |         97 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-12-07 |         89 |         83 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-12-09 |        111 |         57 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-12-14 |         54 |         65 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-12-16 |         62 |         88 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2024-12-31 |        113 |         75 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-04 |         80 |         77 | University of Saint Francis       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-08 |         79 |         76 | Taylor University                 |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-11 |         84 |         71 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-15 |         85 |         76 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-18 |         78 |         71 | Marian University                 |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-25 |         83 |         76 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-25 |         83 |         76 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-01-29 |         89 |         75 | Grace College                     |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-01 |         94 |         60 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-05 |         84 |         75 | Spring Arbor University           |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-08 |         95 |         86 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-12 |         76 |         63 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-15 |         98 |         76 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-19 |         85 |        104 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-22 |         88 |         73 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-25 |         95 |         96 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-02-28 |         89 |         82 | Grace College                     |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-03-14 |         96 |         77 | Indiana Wesleyan University       |
+| Indiana Wesleyan University      | 50.400 |    39.700 | 75.800 | 2025-03-15 |         74 |         88 | Life University                   |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-10-29 |         61 |        104 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-01 |         88 |         77 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-06 |         88 |         90 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-08 |         73 |         79 | Rochester Christian University    |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-09 |         90 |         60 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-13 |         81 |         88 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-16 |         85 |         64 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-20 |         90 |         83 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-23 |         83 |        101 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-11-30 |         88 |         75 | University of Pikeville           |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-12-01 |         95 |         72 | Georgetown College                |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-12-04 |         89 |         65 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-12-04 |         89 |         65 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-12-04 |         69 |         60 | Mount Vernon Nazarene University  |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2024-12-07 |         95 |         78 | Bethel University                 |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-04 |         80 |         77 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-08 |         73 |         98 | Mount Vernon Nazarene University  |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-11 |         57 |         72 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-15 |         65 |         72 | Grace College                     |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-18 |         79 |         81 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-25 |         68 |         82 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-01-29 |         84 |         67 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-01 |         91 |         69 | Huntington University             |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-01 |         91 |         69 | Huntington University             |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-05 |         70 |         75 | Bethel University                 |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-08 |         95 |         86 | Indiana Wesleyan University       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-12 |         78 |         82 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-15 |         80 |         72 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-19 |         84 |         80 | Grace College                     |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-22 |         75 |         57 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-25 |         95 |         83 | Huntington University             |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-02-25 |         95 |         83 | Huntington University             |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-03-14 |         73 |         81 | University of Saint Francis       |
+| University of Saint Francis      | 49.700 |    36.300 | 72.400 | 2025-03-15 |         83 |         64 | Georgetown College                |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-10-25 |         74 |         84 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-10-26 |        130 |         72 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-10-26 |        130 |         72 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-10-26 |         58 |         89 | Taylor University                 |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-10-30 |         75 |         69 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-01 |         91 |         67 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-01 |         91 |         67 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-02 |         56 |         50 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-02 |         56 |         50 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-11-02 |         85 |         65 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-06 |         83 |         87 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-06 |         83 |         87 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-11-08 |         93 |         80 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-09 |         87 |         63 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-09 |         87 |         63 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-13 |         60 |         31 | Madonna University                |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-13 |         60 |         31 | Madonna University                |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-16 |         82 |         78 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-16 |         82 |         78 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-11-20 |         90 |         83 | University of Saint Francis       |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-20 |         97 |         88 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-20 |         97 |         88 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-23 |         90 |         96 | Bethel University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-11-23 |         90 |         96 | Bethel University                 |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2024-11-27 |         84 |         62 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-04 |         89 |         65 | University of Saint Francis       |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-04 |         89 |         65 | University of Saint Francis       |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-07 |         82 |         71 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-07 |         82 |         71 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-14 |         77 |         80 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-14 |         77 |         80 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-16 |         69 |         97 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-16 |         69 |         97 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-30 |         79 |         64 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2024-12-30 |         79 |         64 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-04 |         78 |         76 | Marian University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-04 |         78 |         76 | Marian University                 |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-04 |         64 |         47 | Spring Arbor University           |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-08 |         66 |         70 | Grace College                     |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-08 |         66 |         70 | Grace College                     |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-08 |         79 |         76 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-11 |         64 |         81 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-11 |         64 |         81 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-11 |        110 |        102 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-15 |         82 |         68 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-15 |         82 |         68 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-15 |         82 |         68 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-15 |         82 |         68 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-18 |         60 |        109 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-18 |         60 |        109 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-18 |         74 |         62 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-25 |         83 |         76 | Indiana Wesleyan University       |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-25 |         83 |         76 | Indiana Wesleyan University       |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-25 |         68 |         82 | University of Saint Francis       |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-29 |         82 |         92 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-01-29 |         82 |         92 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-01-29 |         76 |         71 | Grace College                     |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-01 |         69 |         59 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-01 |         91 |         69 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-01 |         91 |         69 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-05 |         57 |         68 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-05 |         57 |         68 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-05 |         90 |         84 | Grace College                     |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-08 |         83 |         62 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-08 |         83 |         62 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-08 |         83 |         71 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-12 |         82 |         84 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-12 |         82 |         84 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-12 |         76 |         63 | Indiana Wesleyan University       |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-15 |         58 |         62 | Spring Arbor University           |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-15 |         58 |         62 | Spring Arbor University           |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-15 |         55 |         80 | Taylor University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-19 |         84 |         92 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-19 |         84 |         92 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-19 |         84 |         92 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-19 |         84 |         92 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-22 |         91 |         56 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-22 |         91 |         56 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-22 |         80 |         67 | Bethel University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-25 |         95 |         83 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-25 |         95 |         83 | Huntington University             |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-02-25 |         77 |         69 | Bethel University                 |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-28 |         65 |         75 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-02-28 |         65 |         75 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-03-03 |         80 |         72 | Grace College                     |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-03-03 |         80 |         72 | Grace College                     |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-03-14 |         77 |         51 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-03-14 |         77 |         51 | Huntington University             |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-03-15 |         66 |         80 | Northwestern College              |
+| Huntington University            | 49.100 |    36.400 | 68.600 | 2025-03-15 |         66 |         80 | Northwestern College              |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-11-23 |         87 |         79 | Taylor University                 |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-12-04 |         83 |         91 | Taylor University                 |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-12-06 |        107 |         59 | Taylor University                 |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-12-07 |         76 |         88 | Grace College                     |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-12-11 |         65 |         64 | Holy Cross College                |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-12-17 |        121 |        115 | Indiana University East           |
+| Taylor University                | 49.100 |    38.300 | 68.500 | 2025-12-30 |         94 |         92 | University of Northwestern Ohio   |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-10-31 |         74 |         64 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-11-01 |         66 |         79 | Indiana Institute of Technology   |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-11-05 |         94 |         83 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-11-09 |         57 |         75 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-11-12 |         67 |         95 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-11-15 |         56 |         71 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-11-20 |         65 |         57 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2024-12-07 |         89 |         83 | Indiana Wesleyan University       |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-04 |         64 |         47 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-11 |         64 |         81 | Huntington University             |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-11 |         64 |         81 | Huntington University             |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-15 |         73 |         63 | Bethel University                 |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-18 |         79 |         81 | University of Saint Francis       |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-25 |         62 |         68 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-01-29 |         71 |         80 | Marian University                 |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-01 |         90 |         76 | Grace College                     |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-05 |         84 |         75 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-08 |         83 |         71 | Taylor University                 |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-13 |         88 |         68 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-15 |         58 |         62 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-15 |         58 |         62 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-19 |         79 |         72 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-22 |         75 |         57 | University of Saint Francis       |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-02-25 |         95 |         96 | Indiana Wesleyan University       |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-03-14 |         81 |         83 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-03-15 |         71 |         69 | Freed-Hardeman University         |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-11-23 |         74 |         76 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-11-26 |         67 |         81 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-12-04 |         76 |         61 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-12-17 |         83 |         60 | Spring Arbor University           |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-12-20 |         87 |         65 | Madonna University                |
+| Spring Arbor University          | 48.500 |    33.100 | 74.000 | 2025-12-31 |         59 |         64 | Spring Arbor University           |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-10-26 |         86 |         61 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-01 |         92 |         66 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-02 |         87 |         79 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-02 |         75 |         72 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-09 |         78 |         57 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-13 |        102 |         86 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-15 |         56 |         76 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-20 |        101 |         56 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-23 |         90 |         96 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-23 |         90 |         96 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-11-26 |         74 |         68 | Georgetown College                |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-12-04 |         89 |         97 | Indiana Wesleyan University       |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-12-07 |         95 |         78 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-12-16 |        101 |         81 | Florida Memorial University       |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-12-17 |         94 |         82 | Ave Maria University              |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2024-12-30 |         91 |         83 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-04 |         69 |         81 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-08 |         70 |         57 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-11 |         74 |         75 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-15 |         73 |         63 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-18 |         74 |         62 | Taylor University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-25 |         69 |         86 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-29 |         82 |         92 | Huntington University             |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-01-29 |         82 |         92 | Huntington University             |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-01 |         94 |         60 | Indiana Wesleyan University       |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-05 |         70 |         75 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-08 |         72 |         69 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-12 |         66 |         89 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-15 |         55 |         72 | Grace College                     |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-19 |         79 |         72 | Spring Arbor University           |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-22 |         80 |         67 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-25 |         77 |         69 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-28 |         65 |         75 | Huntington University             |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-02-28 |         65 |         75 | Huntington University             |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-03-14 |         83 |         69 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-03-15 |         93 |         84 | Bethel University                 |
+| Bethel University                | 47.900 |    34.700 | 65.800 | 2025-03-21 |         78 |         83 | LSU Alexandria                    |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-11-02 |         83 |         57 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-11-08 |        101 |         80 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-11-09 |         80 |         57 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-11-15 |         79 |         98 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-11-16 |         69 |         70 | Rochester Christian University    |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-11-20 |         65 |         57 | Spring Arbor University           |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-12-04 |         69 |         60 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-12-07 |         82 |         71 | Huntington University             |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2024-12-07 |         82 |         71 | Huntington University             |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-01-04 |         69 |         81 | Bethel University                 |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-01-08 |         73 |         98 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-01-11 |         84 |         71 | Indiana Wesleyan University       |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-01-15 |         66 |         63 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-01-18 |         68 |         66 | Grace College                     |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-01-25 |         62 |         68 | Spring Arbor University           |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-01 |         73 |        101 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-05 |         57 |         68 | Huntington University             |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-05 |         57 |         68 | Huntington University             |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-08 |         72 |         69 | Bethel University                 |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-12 |         78 |         82 | University of Saint Francis       |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-15 |         98 |         76 | Indiana Wesleyan University       |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-19 |         69 |         78 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-22 |         77 |         84 | Grace College                     |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-02-25 |         83 |         64 | Grace College                     |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-11-23 |         87 |         79 | Taylor University                 |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-11-26 |         85 |         78 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-12-13 |         81 |         88 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-12-14 |         67 |         88 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-12-16 |         79 |        101 | Mount Vernon Nazarene University  |
+| Mount Vernon Nazarene University | 45.900 |    36.600 | 77.200 | 2025-12-30 |         85 |         81 | Mount Vernon Nazarene University  |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2024-11-04 |         71 |         81 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2024-11-10 |         78 |         71 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2024-11-12 |         78 |         87 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2024-11-15 |         81 |         80 | Rochester Christian University    |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2024-11-16 |         68 |         93 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2024-12-02 |         77 |         85 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-04 |         78 |         76 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-04 |         78 |         76 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-08 |         70 |         57 | Bethel University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-11 |         57 |         72 | University of Saint Francis       |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-15 |         66 |         63 | Mount Vernon Nazarene University  |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-18 |         78 |         71 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-25 |         76 |         83 | Grace College                     |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-01-29 |         71 |         80 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-01 |         69 |         59 | Taylor University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-06 |         76 |         68 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-08 |         83 |         62 | Huntington University             |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-08 |         83 |         62 | Huntington University             |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-12 |         66 |         89 | Bethel University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-15 |         80 |         72 | University of Saint Francis       |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-19 |         69 |         78 | Mount Vernon Nazarene University  |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-02-22 |         88 |         73 | Indiana Wesleyan University       |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-11-20 |         98 |         62 | Grace College                     |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-11-23 |         74 |         76 | Spring Arbor University           |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-12-04 |         83 |         91 | Taylor University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-12-07 |         70 |         93 | Marian University                 |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-12-14 |         78 |         63 | Roosevelt University              |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-12-19 |         77 |         83 | Indiana University Columbus       |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-12-21 |         76 |         74 | Saint Mary-of-the-Woods College   |
+| Marian University                | 45.100 |    36.700 | 78.600 | 2025-12-27 |        105 |         54 | Marian University                 |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-10-29 |         78 |         83 | Concordia University              |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-01 |         97 |         75 | Madonna University                |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-02 |         87 |         76 | Lawrence Technological University |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-06 |        113 |         95 | Goshen College                    |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-13 |         83 |         65 | Goshen College                    |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-16 |         59 |         69 | Goshen College                    |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-20 |        101 |         56 | Bethel University                 |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2024-11-23 |         83 |        101 | University of Saint Francis       |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-01-04 |        111 |         67 | Grace College                     |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-01-11 |        110 |        102 | Taylor University                 |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-01-15 |         85 |         76 | Indiana Wesleyan University       |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-01-18 |         60 |        109 | Huntington University             |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-01-18 |         60 |        109 | Huntington University             |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-01-29 |         84 |         67 | University of Saint Francis       |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-01 |         73 |        101 | Mount Vernon Nazarene University  |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-06 |         76 |         68 | Marian University                 |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-08 |         59 |         82 | Grace College                     |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-13 |         88 |         68 | Spring Arbor University           |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-15 |         55 |         80 | Taylor University                 |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-19 |         85 |        104 | Indiana Wesleyan University       |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-22 |         91 |         56 | Huntington University             |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-02-22 |         91 |         56 | Huntington University             |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-12-07 |         70 |         93 | Marian University                 |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-12-16 |        107 |         96 | Goshen College                    |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-12-19 |         82 |         73 | Aquinas College                   |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-12-30 |         92 |         75 | University of St. Francis         |
+| Goshen College                   | 43.200 |    33.000 | 71.300 | 2025-12-31 |         93 |         94 | Goshen College                    |
++----------------------------------+--------+-----------+--------+------------+------------+------------+-----------------------------------+
+362 rows in set (0.007 sec)
 ```
