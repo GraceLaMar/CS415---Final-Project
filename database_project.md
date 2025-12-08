@@ -1326,3 +1326,279 @@ ORDER BY s.fg_pct DESC, g.game_date ASC;
 +----------------------------------+--------+-----------+--------+------------+------------+------------+-----------------------------------+
 362 rows in set (0.007 sec)
 ```
+
+## Query 6 – `LEFT JOIN` to include projects without donations
+
+This query
+
+```sql
+-- Query 6: LEFT JOIN projects to donations to show all projects, even with no donations
+SELECT 
+    T.team_name,
+    S.points_avg
+FROM Teams T
+LEFT JOIN SeasonStats S ON T.team_id = S.team_id;
+```
+
+**Sample Output**
+```code
++------------------------------------+------------+
+| team_name                          | points_avg |
++------------------------------------+------------+
+| Huntington University              |      83.00 |
+| Indiana Wesleyan University        |      87.40 |
+| Bethel University                  |      81.00 |
+| University of Saint Francis        |      80.30 |
+| Goshen College                     |      74.00 |
+| Grace College                      |      86.60 |
+| Mount Vernon Nazarene University   |      77.90 |
+| Spring Arbor University            |      75.50 |
+| Taylor University                  |      80.10 |
+| Marian University                  |      75.00 |
+| Madonna University                 |       NULL |
+| Indiana Institute of Technology    |       NULL |
+| Cornerstone University             |       NULL |
+| University of Michigan-Dearborn    |       NULL |
+| University of Pikeville            |       NULL |
+| University of Rio Grande           |       NULL |
+| Georgetown College                 |       NULL |
+| University of Northwestern Ohio    |       NULL |
+| Olivet Nazarene University         |       NULL |
+| Holy Cross College                 |       NULL |
+| East-West University               |       NULL |
+| Indiana University Columbus        |       NULL |
+| Milligan University                |       NULL |
+| Lawrence Technological University  |       NULL |
+| New College of Florida             |       NULL |
+| Ave Maria University               |       NULL |
+| Lourdes University                 |       NULL |
+| Northwestern College               |       NULL |
+| MidAmerica Nazarene University     |       NULL |
+| Grand View University              |       NULL |
+| Trinity Christian College          |       NULL |
+| Florida Memorial University        |       NULL |
+| St. Thomas University              |       NULL |
+| Life University                    |       NULL |
+| Governors State University         |       NULL |
+| Indiana University South Bend      |       NULL |
+| Cumberland University              |       NULL |
+| Peru State College                 |       NULL |
+| Morningside University             |       NULL |
+| LSU Alexandria                     |       NULL |
+| Rochester Christian University     |       NULL |
+| Cleary University                  |       NULL |
+| Lewis-Clark State College          |       NULL |
+| Concordia University               |       NULL |
+| Kuyper College                     |       NULL |
+| Defiance College                   |       NULL |
+| Midway University                  |       NULL |
+| Aquinas College                    |       NULL |
+| University of St. Francis          |       NULL |
+| Saint Xavier University            |       NULL |
+| Indiana University East            |       NULL |
+| Texas A&M University-San Antonio   |       NULL |
+| Nelson University                  |       NULL |
+| Carolina University                |       NULL |
+| Saint Mary-of-the-Woods College    |       NULL |
+| Arizona Christian University       |       NULL |
+| Campbellsville University          |       NULL |
+| Pacific Union College              |       NULL |
+| Califorinia State Maritime Academy |       NULL |
+| Simpson University                 |       NULL |
+| Grace Christian University         |       NULL |
+| Great Lakes Christian College      |       NULL |
+| Siena Heights University           |       NULL |
+| Freed-Hardeman University          |       NULL |
+| La Sierra University               |       NULL |
+| Justice College                    |       NULL |
+| Adrian College                     |       NULL |
+| Indiana University Kokomo          |       NULL |
+| Ohio Christian University          |       NULL |
+| Moody Bible Institute              |       NULL |
+| Indiana University Southeast       |       NULL |
+| Judson University                  |       NULL |
+| Roosevelt University               |       NULL |
+| Kenyon College                     |       NULL |
++------------------------------------+------------+
+74 rows in set (0.002 sec)
+```
+
+## Query 7 – `UPDATE` query (change project status)
+
+This query
+
+```sql
+-- Query 7: UPDATE a project’s status from Planned ('P') to Active ('A')
+
+-- Check current status
+SELECT pid, name, status
+FROM project
+WHERE pid = 2;
+
+-- Perform the update
+UPDATE project
+SET status = 'A'
+WHERE pid = 2;
+
+-- Verify the change
+UPDATE Teams
+SET conference = 'Crossroads League'
+WHERE conference = 'CRL';
+```
+
+```code
+
+```
+
+## Query 8 – `DELETE` query (remove a specific donation)
+
+This query
+
+```sql
+-- Query 8: DELETE a single donation (e.g., did = 100)
+
+-- Show the donation we plan to delete
+SELECT game_id, game_date, home_team_id, away_team_id, home_score, away_score
+FROM Games
+WHERE game_id = 20;
+
+-- Delete the row
+DELETE FROM Games
+WHERE game_id = 20;
+
+-- Confirm it is gone
+SELECT game_id, game_date, home_team_id, away_team_id, home_score, away_score
+FROM Games
+WHERE game_id = 20;
+```
+
+```code
++---------+------------+--------------+--------------+------------+------------+
+| game_id | game_date  | home_team_id | away_team_id | home_score | away_score |
++---------+------------+--------------+--------------+------------+------------+
+|      20 | 2025-01-25 |            2 |            1 |         83 |         76 |
++---------+------------+--------------+--------------+------------+------------+
+1 row in set (0.001 sec)
+
+Query OK, 1 row affected (0.003 sec)
+
+Empty set (0.000 sec)
+```
+
+## Query 9 – Create a `VIEW` and use it
+
+This query
+
+```sql
+-- Query 9: Create a VIEW and then select from it
+
+-- Create the view (run once)
+CREATE VIEW TeamSeasonSummary AS
+SELECT 
+    T.team_name,
+    T.conference,
+    S.season,
+    S.points_avg,
+    S.rebounds_avg,
+    S.assists_avg
+FROM Teams T
+INNER JOIN SeasonStats S ON T.team_id = S.team_id;
+
+-- Use the view
+SELECT * FROM TeamSeasonSummary
+ORDER BY points_avg DESC;
+```
+```code
++----------------------------------+-------------------+---------+------------+--------------+-------------+
+| team_name                        | conference        | season  | points_avg | rebounds_avg | assists_avg |
++----------------------------------+-------------------+---------+------------+--------------+-------------+
+| Indiana Wesleyan University      | Crossroads League | 2024-25 |      87.40 |        29.50 |       18.20 |
+| Grace College                    | Crossroads League | 2024-25 |      86.60 |        31.20 |       19.30 |
+| Huntington University            | Crossroads League | 2024-25 |      83.00 |        33.10 |       14.20 |
+| Bethel University                | Crossroads League | 2024-25 |      81.00 |        31.00 |       15.20 |
+| University of Saint Francis      | Crossroads League | 2024-25 |      80.30 |        31.50 |       12.80 |
+| Taylor University                | Crossroads League | 2024-25 |      80.10 |        33.40 |       16.40 |
+| Mount Vernon Nazarene University | Crossroads League | 2024-25 |      77.90 |        34.20 |       15.40 |
+| Spring Arbor University          | Crossroads League | 2024-25 |      75.50 |        31.80 |       14.50 |
+| Marian University                | Crossroads League | 2024-25 |      75.00 |        35.30 |       13.50 |
+| Goshen College                   | Crossroads League | 2024-25 |      74.00 |        39.60 |       13.10 |
++----------------------------------+-------------------+---------+------------+--------------+-------------+
+10 rows in set (0.002 sec)
+```
+
+## Query 10 – Transaction with `ROLLBACK`
+
+This example
+
+```sql
+-- Query 10: Demonstrate a transaction with ROLLBACK
+
+-- Check original goal
+SELECT team_name
+FROM Teams
+WHERE team_id = 1;
+
+START TRANSACTION;
+
+-- Temporarily increase the goal by $500
+UPDATE Teams
+SET team_name = 'Huntington Foresters'
+WHERE team_name = 'Huntington University';
+
+-- See the changed value inside the transaction
+SELECT team_name
+FROM Teams
+WHERE team_id = 1;
+
+-- Decide to undo the change
+ROLLBACK;
+
+-- Confirm the goal is back to the original value
+SELECT team_name
+FROM Teams
+WHERE team_id = 1;
+```
+
+```code
+MariaDB [lamar]> SELECT team_name
+    -> FROM Teams
+    -> WHERE team_id = 1;
++-----------------------+
+| team_name             |
++-----------------------+
+| Huntington University |
++-----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [lamar]> START TRANSACTION;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [lamar]> UPDATE Teams
+    -> SET team_name = 'Huntington Foresters'
+    -> WHERE team_name = 'Huntington University';
+Query OK, 1 row affected (0.001 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [lamar]> SELECT team_name
+    -> FROM Teams
+    -> WHERE team_id = 1;
++----------------------+
+| team_name            |
++----------------------+
+| Huntington Foresters |
++----------------------+
+1 row in set (0.001 sec)
+
+MariaDB [lamar]> ROLLBACK;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [lamar]> SELECT team_name
+    -> FROM Teams
+    -> WHERE team_id = 1;
++-----------------------+
+| team_name             |
++-----------------------+
+| Huntington University |
++-----------------------+
+1 row in set (0.001 sec)
+```
