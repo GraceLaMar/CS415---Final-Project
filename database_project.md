@@ -1141,6 +1141,8 @@ MariaDB [lamar]> SELECT team_name
 
 ### Reports
 
+**Sample PowerBI Chart**
+
 
 ### Delete Tables
 
@@ -1167,3 +1169,10 @@ DROP TABLE IF EXISTS Teams;
 SET FOREIGN_KEY_CHECKS = 1;
 
 ```
+---
+
+### Poster and Presentation
+
+[Poster PDF](Research Poster Template - CS415 Project.pdf)
+
+
