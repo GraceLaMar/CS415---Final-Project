@@ -1184,6 +1184,6 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 ### Poster and Presentation
 
-[Poster PDF]([​Research Poster Template - CS 415 Project​](Slide1.pdf)
+[Poster PDF]([​Research Poster Template - CS 415 Project​](Slide1.png)
 
 
